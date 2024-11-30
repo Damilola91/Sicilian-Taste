@@ -1,0 +1,85 @@
+/* Navbar generale */
+.navbar {
+  background-color: white;
+  padding: 10px 20px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+.logo {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 2rem;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.logo:hover {
+  color: #ff6347;
+}
+
+/* Nav links centrali */
+.navbar-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.nav-link {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 1.5rem; /* Dimensione del font */
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  margin: 0 15px; /* Distanza tra i link */
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ff6347;
+}
+
+
+.nav-icons {
+  font-size: 1.2rem;
+}
+
+.search-icon {
+  cursor: pointer;
+}
+
+.login-button {
+  padding: 5px 15px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  background-color: #ff6347;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #e5533f;
+}
+
+
+@media (max-width: 768px) {
+  .nav-link {
+    text-align: center;
+    font-size: 1.3rem; 
+    margin: 10px 0; 
+  }
+
+  .login-button {
+    margin-top: 10px;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+  }
+}

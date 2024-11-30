@@ -1,0 +1,69 @@
+/* Footer Container */
+.footer {
+    background-color: #f8f9fa;
+    color: #343a40;
+    padding: 40px 20px; /* Padding laterale aggiunto */
+  }
+  
+  /* Logo e Citazione */
+  .footer-logo {
+    font-family: "Brush Script MT", cursive;
+    font-size: 2.5rem;
+    color: #000;
+    margin-bottom: 20px;
+  }
+  
+  .footer-quote {
+    font-size: 0.9rem;
+    color: #6c757d;
+    line-height: 1.6;
+  }
+  
+  /* Titoli delle Sezioni */
+  .footer-heading {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #000;
+  }
+  
+  /* Collegamenti */
+  .footer-link {
+    color: #343a40;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .footer-link:hover {
+    color: #007bff;
+    text-decoration: underline;
+  }
+  
+  /* Icone */
+  .footer-icons {
+    margin-top: 10px;
+  }
+  
+  .icon-link {
+    color: #343a40;
+    margin: 0 10px;
+    transition: color 0.3s;
+  }
+  
+  .icon-link:hover {
+    color: #007bff;
+  }
+  
+  hr {
+    border-top: 1px solid #dee2e6;
+    margin: 20px 0;
+  }
+  
+  /* Copyright */
+  .footer-copyright {
+    font-size: 0.9rem;
+    color: #6c757d;
+  }
+  
