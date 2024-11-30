@@ -5,12 +5,13 @@ import Navbar from "./components/Navbar/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import CategoriesPage from "./components/Pages/CategoriesPage/CategoriesPage";
+import RecipePage from "./components/Pages/RecipePage/RecipePage";
 
 const App = () => {
   return (
     <>
       <Navbar />
-      <CategoriesPage />
+      <RecipePage />
       <Footer />
     </>
   );
