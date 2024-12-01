@@ -11,7 +11,7 @@ const App = () => {
   return (
     <>
       <Navbar />
-      <RecipePage />
+      <Header />
       <Footer />
     </>
   );
