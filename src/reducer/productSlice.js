@@ -46,7 +46,6 @@ const allProductSlice = createSlice({
   },
 });
 
-// Modifica i selettori per riflettere il nome corretto del reducer nello stato globale
 export const allProducts = (state) => state.products.products;
 export const isProductLoading = (state) => state.products.isLoading;
 export const errorProduct = (state) => state.products.error;
