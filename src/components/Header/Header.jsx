@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../reducer/productSlice";
+import {
+  getAllProducts,
+  allProducts,
+  isProductLoading,
+  errorProduct,
+} from "../../reducer/productSlice";
 import "./Header.css";
 
 const Header = () => {
   const dispatch = useDispatch();
 
-  const products = useSelector((state) => state.productSlice.products);
-  const isLoading = useSelector((state) => state.productSlice.isLoading);
-  const error = useSelector((state) => state.productSlice.error);
+  const products = useSelector(allProducts);
+  const isLoading = useSelector(isProductLoading);
+  const error = useSelector(errorProduct);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 

@@ -1,8 +1,9 @@
+// productSlice.js
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLoading: false,
-  products: [],
+  products: [], // Assicurati che 'products' sia un array vuoto inizialmente
   error: "",
 };
 
@@ -17,10 +18,10 @@ export const getAllProducts = createAsyncThunk(
       }
 
       const data = await response.json();
-      return data;
+      return data; // Ritorna i dati ricevuti dal server
     } catch (error) {
       console.error("Error fetching products:", error.message);
-      throw new Error("Couldn't Retrive Products");
+      throw new Error("Couldn't Retrieve Products");
     }
   }
 );
@@ -37,7 +38,7 @@ const allProductSlice = createSlice({
       })
       .addCase(getAllProducts.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.products = action.payload.products || [];
+        state.products = action.payload.products || []; // Assicurati che 'products' esista nei dati
       })
       .addCase(getAllProducts.rejected, (state, action) => {
         state.isLoading = false;
@@ -46,8 +47,8 @@ const allProductSlice = createSlice({
   },
 });
 
-export const allProducts = (state) => state.products.products;
-export const isProductLoading = (state) => state.products.isLoading;
-export const errorProduct = (state) => state.products.error;
+export const allProducts = (state) => state.productSlice.products;
+export const isProductLoading = (state) => state.productSlice.isLoading;
+export const errorProduct = (state) => state.productSlice.error;
 
 export default allProductSlice.reducer;
