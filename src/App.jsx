@@ -1,21 +1,19 @@
-import Footer from "./components/Footer/Footer";
-import Header from "./components/Header/Header";
-import Main from "./components/Main/Main";
-import Navbar from "./components/Navbar/Navbar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import HomePage from "./components/Pages/HomePage/HomePage";
 import CategoriesPage from "./components/Pages/CategoriesPage/CategoriesPage";
-import RecipePage from "./components/Pages/RecipePage/RecipePage";
-import PopularCategories from "./components/PopularCategories/PopularCategories";
+import RecipePage from "./components/RecipePage/RecipePage";
 
 const App = () => {
   return (
-    <>
-      <Navbar />
-      <Header />
-      <Main />
-      <Footer />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<HomePage />} />
+        <Route path="/categories" element={<CategoriesPage />} />
+        <Route path="/recipe" element={<RecipePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
