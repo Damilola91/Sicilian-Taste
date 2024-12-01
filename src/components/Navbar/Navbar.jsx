@@ -4,12 +4,10 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg">
       <div className="container">
-        {/* Logo */}
         <a className="navbar-brand logo" href="/">
           SicilianTaste
         </a>
 
-        {/* Hamburger menu per dispositivi piccoli */}
         <button
           className="navbar-toggler"
           type="button"
@@ -22,9 +20,7 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Link di navigazione e bottoni */}
         <div className="collapse navbar-collapse" id="navbarNav">
-          {/* Nav links centrati */}
           <ul className="navbar-nav mx-auto">
             <li className="nav-item">
               <a className="nav-link" href="/">
@@ -47,8 +43,6 @@ const Navbar = () => {
               </a>
             </li>
           </ul>
-
-          {/* Icona di ricerca e bottone login */}
           <div className="nav-icons d-flex align-items-center">
             <span className="search-icon">&#128269;</span>
             <button className="login-button ms-3">Login</button>

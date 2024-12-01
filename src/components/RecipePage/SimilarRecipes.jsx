@@ -10,7 +10,6 @@ const SimilarRecipes = () => {
   const isLoading = useSelector(isProductLoading);
   const error = useSelector(errorProduct);
 
-  // Funzione per ottenere prodotti casuali
   const getRandomProducts = (arr, num) => {
     const shuffled = [...arr].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, num);

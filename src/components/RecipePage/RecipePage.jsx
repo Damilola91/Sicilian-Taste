@@ -23,11 +23,9 @@ const RecipePage = () => {
     dispatch(getAllProducts());
   }, [dispatch]);
 
-  // Funzione per selezionare un prodotto casuale
   const getRandomProduct = (arr) =>
     arr.length > 0 ? arr[Math.floor(Math.random() * arr.length)] : null;
 
-  // Selezioniamo un prodotto casuale
   const product = getRandomProduct(products);
 
   return (
@@ -45,9 +43,9 @@ const RecipePage = () => {
             />
             <RecipeDetails
               ingredients={{
-                crust: product.ingredients, // Mostra i primi 3 ingredienti come esempio
+                crust: product.ingredients,
               }}
-              recipe={product.recipe.split(".").map((step) => step.trim())} // Dividiamo e rimuoviamo spazi extra
+              recipe={product.recipe.split(".").map((step) => step.trim())}
               nutritionFacts={product.nutritionFacts}
             />
             <SimilarRecipes />

@@ -1,7 +1,6 @@
 const RecipeDetails = ({ ingredients, recipe, nutritionFacts }) => {
   return (
     <div className="row mt-5">
-      {/* Ingredienti */}
       <div className="col-lg-4 mb-4">
         <h3>Ingredients</h3>
         <ul>
@@ -11,10 +10,8 @@ const RecipeDetails = ({ ingredients, recipe, nutritionFacts }) => {
         </ul>
       </div>
 
-      {/* Wrapper per le Istruzioni e i Fatti Nutrizionali */}
       <div className="col-lg-8">
         <div className="row">
-          {/* Istruzioni */}
           <div className="col-lg-8">
             <h3>Instructions</h3>
             <ol>
@@ -24,7 +21,6 @@ const RecipeDetails = ({ ingredients, recipe, nutritionFacts }) => {
             </ol>
           </div>
 
-          {/* Fatti nutrizionali */}
           <div className="col-lg-4">
             <h3>Nutrition Facts</h3>
             <ul>
