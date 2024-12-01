@@ -1,0 +1,11 @@
+.instructions-section {
+    margin-right: 20px; /* Sposta la colonna Instructions più a sinistra */
+  }
+  
+  @media (max-width: 992px) {
+    /* Assicura che sia ben allineato sui dispositivi più piccoli */
+    .instructions-section {
+      margin-right: 0;
+    }
+  }
+  
