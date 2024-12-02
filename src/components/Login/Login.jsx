@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-
 import "./Login.css";
 
 const Login = () => {
@@ -54,7 +53,6 @@ const Login = () => {
       if (response.ok) {
         localStorage.setItem("Authorization", JSON.stringify(result.token));
         setIsAuthenticated(true);
-        closeDrawer();
 
         setTimeout(() => {
           Swal.fire({
