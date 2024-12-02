@@ -40,14 +40,11 @@ const Login = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_SERVER_BASE_URL}/login`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch("http://localhost:4040/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
       const result = await response.json();
       if (response.ok) {
@@ -57,11 +54,11 @@ const Login = () => {
         setTimeout(() => {
           Swal.fire({
             icon: "success",
-            title: `Benvenuto su EpicBook, ${result.user.name}!`,
+            title: `Benvenuto su Sicilian Taste, ${result.user.name}!`,
             customClass: { popup: "swal-popup" },
             zIndex: 999999,
           });
-          navigate("/homepage");
+          navigate("/");
         }, 200);
       } else {
         Swal.fire({
@@ -86,10 +83,47 @@ const Login = () => {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      const response = await fetch("http://localhost:4040/logout", {
+        method: "POST",
+      });
+
+      if (response.ok) {
+        localStorage.removeItem("Authorization");
+        setIsAuthenticated(false);
+
+        Swal.fire({
+          icon: "success",
+          title: "Logout eseguito con successo",
+          customClass: { popup: "swal-popup" },
+          zIndex: 999999,
+        });
+
+        navigate("/");
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Errore di Logout",
+          text: "Non è stato possibile effettuare il logout. Riprova più tardi.",
+          customClass: { popup: "swal-popup" },
+          zIndex: 999999,
+        });
+      }
+    } catch (error) {
+      console.error("Errore di logout:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Errore di rete",
+        text: "Si è verificato un errore durante il logout. Riprova più tardi.",
+        customClass: { popup: "swal-popup" },
+        zIndex: 999999,
+      });
+    }
+  };
+
   const redirectToGoogle = () => {
-    window.location.href = `${
-      import.meta.env.VITE_SERVER_BASE_URL
-    }/auth/google`;
+    window.location.href = "http://localhost:4040/auth/google";
   };
 
   return (
@@ -147,7 +181,9 @@ const Login = () => {
           </p>
         </>
       ) : (
-        <p>You are already logged in!</p>
+        <button onClick={handleLogout} className="logout-button">
+          Logout
+        </button>
       )}
     </div>
   );

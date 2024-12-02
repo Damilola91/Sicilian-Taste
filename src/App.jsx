@@ -4,16 +4,19 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import HomePage from "./components/Pages/HomePage/HomePage";
 import CategoriesPage from "./components/Pages/CategoriesPage/CategoriesPage";
 import RecipePage from "./components/RecipePage/RecipePage";
-import Login from "./components/Login/Login";
+import SuccessLoginGoogle from "./components/SuccessLoginGoogle/SuccessLoginGoogle";
+import ProtectedRoutes from "./middleware/ProtectedRoutes";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/success" element={<SuccessLoginGoogle />} />
         <Route path="/categories" element={<CategoriesPage />} />
-        <Route path="/recipe" element={<RecipePage />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/recipe" element={<RecipePage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

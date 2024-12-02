@@ -55,7 +55,33 @@
     cursor: pointer;
     margin-top: 10px;
   }
+
+  .logout-button {
+    background: #ff4500;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 10px; 
+  }
   
+  .logout-button:hover {
+    background-color: #c9302c; /* Colore leggermente più scuro al passaggio del mouse */
+}
+
+.logout-button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(217, 83, 79, 0.5);
+}
+
+.logout-button:disabled {
+    background-color: #e6e6e6;
+    color: #aaa;
+    cursor: not-allowed;
+}
   .or-login-with {
     text-align: center;
     margin: 10px 0; /* Ridotta */
