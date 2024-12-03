@@ -6,9 +6,11 @@ import {
   errorProduct,
 } from "../../reducer/productSlice";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const PopularCategories = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const products = useSelector(allProducts);
   const isLoading = useSelector(isProductLoading);
   const error = useSelector(errorProduct);
@@ -22,6 +24,10 @@ const PopularCategories = () => {
   );
 
   const categoriesToShow = categories.slice(0, 6);
+
+  const handleCategoryClick = (category) => {
+    navigate(`/categories/${category}`);
+  };
 
   return (
     <section className="text-center mb-5 popular-categories">
@@ -38,7 +44,12 @@ const PopularCategories = () => {
               (product) => product.category === category
             );
             return (
-              <div key={index} className="text-center">
+              <div
+                key={index}
+                className="text-center"
+                style={{ cursor: "pointer" }}
+                onClick={() => handleCategoryClick(category)}
+              >
                 {productForCategory && productForCategory.img ? (
                   <img
                     src={productForCategory.img}

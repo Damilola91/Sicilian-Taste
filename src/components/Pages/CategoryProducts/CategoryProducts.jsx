@@ -6,9 +6,9 @@ import {
   allProducts,
   isProductLoading,
   errorProduct,
-} from "../../reducer/productSlice";
-import Navbar from "../Navbar/Navbar";
-import Footer from "../Footer/Footer";
+} from "../../../reducer/productSlice";
+import Navbar from "../../Navbar/Navbar";
+import Footer from "../../Footer/Footer";
 
 const CategoryProducts = () => {
   const { category } = useParams();

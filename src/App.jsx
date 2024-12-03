@@ -7,7 +7,7 @@ import RecipePage from "./components/RecipePage/RecipePage";
 import SuccessLoginGoogle from "./components/SuccessLoginGoogle/SuccessLoginGoogle";
 import ProtectedRoutes from "./middleware/ProtectedRoutes";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
-import CategoryProducts from "./components/CategoryProducts/CategoryProducts";
+import CategoryProducts from "./components/Pages/CategoryProducts/CategoryProducts";
 
 const App = () => {
   return (
