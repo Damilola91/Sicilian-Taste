@@ -128,7 +128,6 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <button className="close-button">&times;</button>
       <h2 className="login-title">LOGIN</h2>
       {!isAuthenticated ? (
         <>

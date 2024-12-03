@@ -7,10 +7,13 @@ import {
   isProductLoading,
   errorProduct,
 } from "../../reducer/productSlice";
+import { useNavigate } from "react-router-dom";
 
 const Categories = () => {
   const dispatch = useDispatch();
-  const products = useSelector(allProducts); // Otteniamo i prodotti dallo stato Redux
+  const navigate = useNavigate(); // Hook per navigare
+
+  const products = useSelector(allProducts);
   const isLoading = useSelector(isProductLoading);
   const error = useSelector(errorProduct);
 
@@ -28,14 +31,19 @@ const Categories = () => {
     const product = products.find((product) => product.category === category);
     return product
       ? product.img
-      : "https://via.placeholder.com/150?text=No+Image"; // Se non c'è un prodotto per la categoria, usa un'immagine di default
+      : "https://via.placeholder.com/150?text=No+Image";
+  };
+
+  // Funzione per navigare alla pagina della categoria
+  const handleCategoryClick = (category) => {
+    navigate(`/categories/${category}`);
   };
 
   return (
     <div className="categories-page container my-5">
       <h2 className="text-center mb-4">Categories</h2>
       <div className="row justify-content-center gy-3">
-        {/* Renderizza un messaggio di loading o errore */}
+        {/* Messaggi di caricamento o errore */}
         {isLoading && <p>Loading...</p>}
         {error && <p className="text-danger">{error}</p>}
 
@@ -45,10 +53,12 @@ const Categories = () => {
             <div
               key={index}
               className="col-6 col-sm-6 col-md-4 col-lg-3 text-center"
+              onClick={() => handleCategoryClick(category)} // Naviga alla categoria
+              style={{ cursor: "pointer" }} // Aggiunge il puntatore
             >
               <div className="category-item">
                 <img
-                  src={getCategoryImage(category)} // Prendi l'immagine della categoria
+                  src={getCategoryImage(category)}
                   alt={category}
                   className="rounded-circle img-fluid category-image"
                 />
