@@ -11,7 +11,7 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 
 const CategoryProducts = () => {
-  const { category } = useParams(); // Ottieni la categoria dalla URL
+  const { category } = useParams();
   const dispatch = useDispatch();
   const products = useSelector(allProducts);
   const isLoading = useSelector(isProductLoading);
@@ -21,7 +21,6 @@ const CategoryProducts = () => {
     dispatch(getAllProducts());
   }, [dispatch]);
 
-  // Filtra i prodotti per categoria
   const filteredProducts = products.filter(
     (product) => product.category === category
   );
