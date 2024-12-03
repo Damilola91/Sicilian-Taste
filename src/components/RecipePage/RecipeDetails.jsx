@@ -4,8 +4,8 @@ const RecipeDetails = ({ ingredients, recipe, nutritionFacts }) => {
       <div className="col-lg-4 mb-4">
         <h3>Ingredients</h3>
         <ul>
-          {ingredients.crust.map((item, index) => (
-            <li key={index}>{item}</li>
+          {ingredients.crust.map((item, _id) => (
+            <li key={_id}>{item}</li>
           ))}
         </ul>
       </div>
@@ -15,8 +15,8 @@ const RecipeDetails = ({ ingredients, recipe, nutritionFacts }) => {
           <div className="col-lg-8">
             <h3>Instructions</h3>
             <ol>
-              {recipe.map((step, index) => (
-                <li key={index}>{step}</li>
+              {recipe.map((step, _id) => (
+                <li key={_id}>{step}</li>
               ))}
             </ol>
           </div>
