@@ -36,7 +36,7 @@ const CategoryProducts = () => {
           <div className="row gy-3">
             {filteredProducts.map((product) => (
               <div
-                key={product.id}
+                key={product._id}
                 className="col-6 col-sm-6 col-md-4 col-lg-3 text-center"
               >
                 <div className="product-item">
