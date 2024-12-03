@@ -44,9 +44,9 @@ const Categories = () => {
         {error && <p className="text-danger">{error}</p>}
 
         {!isLoading && !error && categories.length > 0 ? (
-          categories.map((category, index) => (
+          categories.map((category, _id) => (
             <div
-              key={index}
+              key={_id}
               className="col-6 col-sm-6 col-md-4 col-lg-3 text-center"
               onClick={() => handleCategoryClick(category)}
               style={{ cursor: "pointer" }}
