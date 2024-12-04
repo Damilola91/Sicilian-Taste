@@ -8,12 +8,14 @@ import SuccessLoginGoogle from "./components/SuccessLoginGoogle/SuccessLoginGoog
 import ProtectedRoutes from "./middleware/ProtectedRoutes";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 import CategoryProducts from "./components/CategoryProducts/CategoryProducts";
+import SignUpForm from "./components/SignUpForm/SignUpForm";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<HomePage />} />
+        <Route path="/register" element={<SignUpForm />} />
         <Route path="/success" element={<SuccessLoginGoogle />} />
         <Route path="/categories" element={<CategoriesPage />} />
         <Route path="/categories/:category" element={<CategoryProducts />} />

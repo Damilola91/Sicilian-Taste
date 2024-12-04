@@ -39,7 +39,7 @@ const Navbar = () => {
             <ul className="navbar-nav mx-auto">
               <li className="nav-item">
                 <a className="nav-link" href="/">
-                  Homepage
+                  Crea Prodotto
                 </a>
               </li>
               <li className="nav-item">
