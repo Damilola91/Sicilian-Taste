@@ -15,7 +15,7 @@ import RecipeDetails from "./RecipeDetails";
 import SimilarRecipes from "./SimilarRecipes";
 
 const RecipePage = () => {
-  const { _id } = useParams(); // Raccogli il parametro id (se presente)
+  const { _id } = useParams();
   const dispatch = useDispatch();
   const products = useSelector(allProducts);
   const isLoading = useSelector(isProductLoading);
@@ -23,7 +23,7 @@ const RecipePage = () => {
 
   useEffect(() => {
     if (!products.length) {
-      dispatch(getAllProducts()); // Carica i prodotti se non sono ancora disponibili
+      dispatch(getAllProducts());
     }
   }, [dispatch, products.length]);
 
@@ -31,8 +31,8 @@ const RecipePage = () => {
     arr.length > 0 ? arr[Math.floor(Math.random() * arr.length)] : null;
 
   const product = _id
-    ? products.find((product) => product._id === _id) // Trova il prodotto dall'id
-    : getRandomProduct(products); // Se id non è presente, seleziona un prodotto casuale
+    ? products.find((product) => product._id === _id)
+    : getRandomProduct(products);
 
   return (
     <>
