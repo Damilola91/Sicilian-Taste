@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { User, Mail, Lock, ChevronDown } from "lucide-react";
 import "./SignUpForm.css";
+import { useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ const SignUpForm = () => {
 
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,13 +24,16 @@ const SignUpForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:4040/users/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/users/create`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (!response.ok) {
         const data = await response.json();
@@ -36,6 +41,12 @@ const SignUpForm = () => {
       }
 
       setSuccess(true);
+      setError(null);
+
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
+
       setFormData({
         name: "",
         surname: "",
@@ -43,7 +54,6 @@ const SignUpForm = () => {
         password: "",
         role: "user",
       });
-      setError(null);
     } catch (err) {
       setError(err.message);
       setSuccess(false);
@@ -137,7 +147,7 @@ const SignUpForm = () => {
             Sign up
           </button>
           <p>
-            By creating an account, you agree to our{" "}
+            By creating an account, you agree to our
             <span className="terms-link">Terms & Conditions</span>
           </p>
         </form>

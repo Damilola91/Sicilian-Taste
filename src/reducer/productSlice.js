@@ -10,7 +10,9 @@ export const getAllProducts = createAsyncThunk(
   "products/GETproducts",
   async () => {
     try {
-      const response = await fetch("http://localhost:4040/products/all");
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/products/all`
+      );
 
       if (!response.ok) {
         throw new Error("Failed to fetch products");
