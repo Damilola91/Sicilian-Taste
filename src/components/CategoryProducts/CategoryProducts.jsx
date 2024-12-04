@@ -1,18 +1,19 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllProducts,
   allProducts,
   isProductLoading,
   errorProduct,
-} from "../../../reducer/productSlice";
-import Navbar from "../../Navbar/Navbar";
-import Footer from "../../Footer/Footer";
+} from "../../reducer/productSlice";
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 
 const CategoryProducts = () => {
   const { category } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const products = useSelector(allProducts);
   const isLoading = useSelector(isProductLoading);
   const error = useSelector(errorProduct);
@@ -24,6 +25,10 @@ const CategoryProducts = () => {
   const filteredProducts = products.filter(
     (product) => product.category === category
   );
+
+  const handleCardClick = (_id) => {
+    navigate(`/recipe/${_id}`);
+  };
 
   return (
     <>
@@ -39,7 +44,11 @@ const CategoryProducts = () => {
                 key={product._id}
                 className="col-6 col-sm-6 col-md-4 col-lg-3 text-center"
               >
-                <div className="product-item">
+                <div
+                  className="product-item"
+                  onClick={() => handleCardClick(product._id)}
+                  style={{ cursor: "pointer" }}
+                >
                   <img
                     src={product.img}
                     alt={product.name}

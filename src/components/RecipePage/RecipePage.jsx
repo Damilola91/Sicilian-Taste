@@ -1,9 +1,5 @@
 import "./RecipePage.css";
-import RecipeHeader from "./RecipeHeader";
-import RecipeDetails from "./RecipeDetails";
-import SimilarRecipes from "./SimilarRecipes";
-import Navbar from "../Navbar/Navbar";
-import Footer from "../Footer/Footer";
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import {
@@ -12,21 +8,26 @@ import {
   isProductLoading,
   errorProduct,
 } from "../../reducer/productSlice";
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
+import RecipeHeader from "./RecipeHeader";
+import RecipeDetails from "./RecipeDetails";
+import SimilarRecipes from "./SimilarRecipes";
 
 const RecipePage = () => {
+  const { _id } = useParams();
   const dispatch = useDispatch();
   const products = useSelector(allProducts);
   const isLoading = useSelector(isProductLoading);
   const error = useSelector(errorProduct);
 
   useEffect(() => {
-    dispatch(getAllProducts());
-  }, [dispatch]);
+    if (!products.length) {
+      dispatch(getAllProducts());
+    }
+  }, [dispatch, products.length]);
 
-  const getRandomProduct = (arr) =>
-    arr.length > 0 ? arr[Math.floor(Math.random() * arr.length)] : null;
-
-  const product = getRandomProduct(products);
+  const product = products.find((product) => product._id === _id);
 
   return (
     <>
@@ -51,7 +52,7 @@ const RecipePage = () => {
             <SimilarRecipes />
           </>
         ) : (
-          !isLoading && <p>No products available.</p>
+          !isLoading && <p>No product found.</p>
         )}
       </div>
       <Footer />

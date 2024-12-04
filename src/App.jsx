@@ -7,7 +7,7 @@ import RecipePage from "./components/RecipePage/RecipePage";
 import SuccessLoginGoogle from "./components/SuccessLoginGoogle/SuccessLoginGoogle";
 import ProtectedRoutes from "./middleware/ProtectedRoutes";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
-import CategoryProducts from "./components/Pages/CategoryProducts/CategoryProducts";
+import CategoryProducts from "./components/CategoryProducts/CategoryProducts";
 
 const App = () => {
   return (
@@ -17,6 +17,7 @@ const App = () => {
         <Route path="/success" element={<SuccessLoginGoogle />} />
         <Route path="/categories" element={<CategoriesPage />} />
         <Route path="/categories/:category" element={<CategoryProducts />} />
+        <Route path="/recipe/:_id" element={<RecipePage />} />
         <Route element={<ProtectedRoutes />}>
           <Route path="/recipe" element={<RecipePage />} />
         </Route>
