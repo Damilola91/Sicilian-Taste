@@ -1,0 +1,122 @@
+.orderFormBody {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .orderFormBody h1,
+  .orderFormBody h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .cartItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+  
+  .cartItemDetails {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .cartItemDetails h4 {
+    margin: 0;
+    font-size: 18px;
+    color: #555;
+  }
+  
+  .cartItemDetails p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .cartItemImage {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .quantityControls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .decrementButton,
+  .incrementButton {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .decrementButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .removeButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ff4d4f;
+    font-size: 20px;
+  }
+  
+  .paymentSection {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .paymentSection h3 {
+    margin: 0 0 10px;
+    font-size: 20px;
+    color: #333;
+  }
+  
+  .cardElement {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 20px 0;
+  }
+  
+  .button {
+    display: block;
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .statusMessage {
+    margin-top: 20px;
+    text-align: center;
+    color: #007bff;
+  }
+  

@@ -9,6 +9,8 @@ import ProtectedRoutes from "./middleware/ProtectedRoutes";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 import CategoryProducts from "./components/CategoryProducts/CategoryProducts";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
+import WrappedOrderForm from "./components/WrappedOrderForm/WrappedOrderForm";
+import CreateProduct from "./components/CreateProduct/CreateProduct";
 
 const App = () => {
   return (
@@ -19,9 +21,11 @@ const App = () => {
         <Route path="/success" element={<SuccessLoginGoogle />} />
         <Route path="/categories" element={<CategoriesPage />} />
         <Route path="/categories/:category" element={<CategoryProducts />} />
+        <Route path="/recipe" element={<RecipePage />} />
         <Route path="/recipe/:_id" element={<RecipePage />} />
         <Route element={<ProtectedRoutes />}>
-          <Route path="/recipe" element={<RecipePage />} />
+          <Route path="/create" element={<CreateProduct />} />
+          <Route path="/buy" element={<WrappedOrderForm />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

@@ -1,0 +1,26 @@
+.create-product-container {
+    margin: 2rem auto;
+    max-width: 1200px;
+    padding: 1rem;
+}
+  
+.create-product-container h1 {
+    font-family: 'Brush Script MT', cursive;
+    color: #ff6347;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+  
+.form-and-preview {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+  
+.form-container,
+.preview-container {
+    flex: 1;
+    min-width: 300px;
+}
+  

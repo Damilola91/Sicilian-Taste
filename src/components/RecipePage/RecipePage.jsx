@@ -1,4 +1,3 @@
-import "./RecipePage.css";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -13,6 +12,8 @@ import Footer from "../Footer/Footer";
 import RecipeHeader from "./RecipeHeader";
 import RecipeDetails from "./RecipeDetails";
 import SimilarRecipes from "./SimilarRecipes";
+import CommentsSection from "./CommentSection";
+import "./RecipePage.css";
 
 const RecipePage = () => {
   const { _id } = useParams();
@@ -30,6 +31,7 @@ const RecipePage = () => {
   const getRandomProduct = (arr) =>
     arr.length > 0 ? arr[Math.floor(Math.random() * arr.length)] : null;
 
+  // Se _id è presente nei parametri dell'URL, lo usiamo per trovare il prodotto
   const product = _id
     ? products.find((product) => product._id === _id)
     : getRandomProduct(products);
@@ -55,6 +57,10 @@ const RecipePage = () => {
               nutritionFacts={product.nutritionFacts}
             />
             <SimilarRecipes />
+            <hr style={{ borderTop: "3px solid orange" }} />
+            {/* Sezione Commenti */}
+            <CommentsSection productId={product._id} />{" "}
+            {/* Passiamo sempre _id del prodotto */}
           </>
         ) : (
           !isLoading && <p>No products available.</p>

@@ -1,24 +1,41 @@
 import { useNavigate } from "react-router-dom";
-import { isAuth } from "../middleware/ProtectedRoutes";
 import { jwtDecode } from "jwt-decode";
-import { useEffect } from "react";
-import { isTokenExpired } from "../utilis/verifyTokenExpiration";
+import { useEffect, useState } from "react";
+import { isAuth } from "../middleware/ProtectedRoutes";
+import { isTokenExpired } from "../utils/verifyTokenExpiration";
 
 const useSession = () => {
-  const session = isAuth();
-  const decodedSession = session ? jwtDecode(session) : null;
-
+  const [sessionData, setSessionData] = useState(null);
   const navigate = useNavigate();
 
-  const navigateToHome = () => {
-    navigate("/");
-  };
-
   useEffect(() => {
-    if (!session || isTokenExpired(decodedSession.exp, () => navigate("/"))) {
-      navigateToHome();
+    const session = isAuth();
+    if (session) {
+      try {
+        const decodedSession = jwtDecode(session);
+        console.log("Decoded session:", decodedSession);
+
+        if (isTokenExpired(decodedSession.exp)) {
+          setSessionData(null);
+          navigate("/");
+        } else {
+          setSessionData({
+            token: session,
+            ...decodedSession,
+          });
+        }
+      } catch (error) {
+        console.error("Errore nel decoding del token:", error);
+        setSessionData(null);
+        navigate("/");
+      }
+    } else {
+      setSessionData(null);
+      navigate("/");
     }
-  }, [navigate, session]);
+  }, [navigate]);
+
+  return sessionData;
 };
 
 export default useSession;
