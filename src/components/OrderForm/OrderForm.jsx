@@ -11,6 +11,8 @@ import { Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import useSession from "../../hooks/useSession";
 import "./OrderForm.css";
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 
 const OrderForm = ({ cartItems }) => {
   const dispatch = useDispatch();
@@ -117,120 +119,128 @@ const OrderForm = ({ cartItems }) => {
     .toFixed(2);
 
   return (
-    <div className="orderFormBody">
-      <h1>Carrello</h1>
+    <>
+      <Navbar />
+      <div className="orderFormBody my-3">
+        <h1>Carrello</h1>
 
-      {cartItems.length > 0 ? (
-        <>
-          <h2>Articoli nel Carrello</h2>
-          {cartItems.map((item) => (
-            <div key={item._id} className="cartItem">
-              <div className="cartItemDetails">
-                <h4>{item.name}</h4>
-                <p>Prezzo unitario: €{parseFloat(item.price).toFixed(2)}</p>
-                <div className="quantityControls">
+        {cartItems.length > 0 ? (
+          <>
+            <h2>Articoli nel Carrello</h2>
+            {cartItems.map((item) => (
+              <div key={item._id} className="cartItem">
+                <div className="cartItemDetails">
+                  <h4>{item.name}</h4>
+                  <p>Prezzo unitario: €{parseFloat(item.price).toFixed(2)}</p>
+                  <div className="quantityControls">
+                    <button
+                      onClick={() => dispatch(decrementQuantity(item._id))}
+                      disabled={item.quantity <= 1}
+                      className="decrementButton"
+                    >
+                      -
+                    </button>
+                    <span>{item.quantity}</span>
+                    <button
+                      onClick={() => dispatch(incrementQuantity(item._id))}
+                      className="incrementButton"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <p>
+                    Prezzo totale: €
+                    {(parseFloat(item.price) * item.quantity).toFixed(2)}
+                  </p>
                   <button
-                    onClick={() => dispatch(decrementQuantity(item._id))}
-                    disabled={item.quantity <= 1}
-                    className="decrementButton"
+                    onClick={() => dispatch(removeFromCart(item._id))}
+                    className="removeButton"
+                    aria-label="Rimuovi elemento"
                   >
-                    -
-                  </button>
-                  <span>{item.quantity}</span>
-                  <button
-                    onClick={() => dispatch(incrementQuantity(item._id))}
-                    className="incrementButton"
-                  >
-                    +
+                    <Trash2 size="24" color="#ff4d4f" />
                   </button>
                 </div>
-                <p>
-                  Prezzo totale: €
-                  {(parseFloat(item.price) * item.quantity).toFixed(2)}
-                </p>
-                <button
-                  onClick={() => dispatch(removeFromCart(item._id))}
-                  className="removeButton"
-                  aria-label="Rimuovi elemento"
-                >
-                  <Trash2 size="24" color="#ff4d4f" />
-                </button>
+                {item.img && (
+                  <img
+                    src={item.img}
+                    alt={item.name}
+                    className="cartItemImage"
+                  />
+                )}
               </div>
-              {item.img && (
-                <img src={item.img} alt={item.name} className="cartItemImage" />
-              )}
-            </div>
-          ))}
+            ))}
 
-          {!isConfirmed ? (
-            <>
-              <h3>Inserisci il tuo indirizzo di spedizione</h3>
-              <form className="shippingForm">
-                <input
-                  type="text"
-                  name="fullName"
-                  placeholder="Nome completo"
-                  value={shippingAddress.fullName}
-                  onChange={handleInputChange}
-                  required
-                />
-                <input
-                  type="text"
-                  name="street"
-                  placeholder="Via"
-                  value={shippingAddress.street}
-                  onChange={handleInputChange}
-                  required
-                />
-                <input
-                  type="text"
-                  name="city"
-                  placeholder="Città"
-                  value={shippingAddress.city}
-                  onChange={handleInputChange}
-                  required
-                />
-                <input
-                  type="text"
-                  name="postalCode"
-                  placeholder="CAP"
-                  value={shippingAddress.postalCode}
-                  onChange={handleInputChange}
-                  required
-                />
-                <input
-                  type="text"
-                  name="country"
-                  placeholder="Paese"
-                  value={shippingAddress.country}
-                  onChange={handleInputChange}
-                  required
-                />
-              </form>
-              <button onClick={handleConfirmOrder} className="button">
-                Conferma Ordine (€{cartTotal})
-              </button>
-            </>
-          ) : (
-            <>
-              <h3>Pagamento</h3>
-              <CardElement className="cardElement" />
-              <button
-                onClick={handleSubmitOrder}
-                disabled={isSubmitting}
-                className="button"
-              >
-                {isSubmitting ? "Elaborazione..." : "Effettua Pagamento"}
-              </button>
-            </>
-          )}
-        </>
-      ) : (
-        <p>Il carrello è vuoto!</p>
-      )}
+            {!isConfirmed ? (
+              <>
+                <h3>Inserisci il tuo indirizzo di spedizione</h3>
+                <form className="shippingForm">
+                  <input
+                    type="text"
+                    name="fullName"
+                    placeholder="Nome completo"
+                    value={shippingAddress.fullName}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="street"
+                    placeholder="Via"
+                    value={shippingAddress.street}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="city"
+                    placeholder="Città"
+                    value={shippingAddress.city}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="postalCode"
+                    placeholder="CAP"
+                    value={shippingAddress.postalCode}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="country"
+                    placeholder="Paese"
+                    value={shippingAddress.country}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </form>
+                <button onClick={handleConfirmOrder} className="button">
+                  Conferma Ordine (€{cartTotal})
+                </button>
+              </>
+            ) : (
+              <>
+                <h3>Pagamento</h3>
+                <CardElement className="cardElement" />
+                <button
+                  onClick={handleSubmitOrder}
+                  disabled={isSubmitting}
+                  className="button"
+                >
+                  {isSubmitting ? "Elaborazione..." : "Effettua Pagamento"}
+                </button>
+              </>
+            )}
+          </>
+        ) : (
+          <p>Il carrello è vuoto!</p>
+        )}
 
-      {orderMessage && <p className="statusMessage">{orderMessage}</p>}
-    </div>
+        {orderMessage && <p className="statusMessage">{orderMessage}</p>}
+      </div>
+      <Footer />
+    </>
   );
 };
 

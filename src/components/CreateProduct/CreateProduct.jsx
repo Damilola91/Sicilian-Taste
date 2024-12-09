@@ -4,6 +4,8 @@ import ProductPreview from "../../components/ProductPreview/ProductPreview";
 import { useNavigate } from "react-router-dom";
 import useSession from "../../hooks/useSession";
 import "./CreateProduct.css";
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 
 const CreateProduct = () => {
   const [product, setProduct] = useState(null);
@@ -76,17 +78,21 @@ const CreateProduct = () => {
   };
 
   return (
-    <div className="create-product-container">
-      <h1>Crea un Nuovo Prodotto</h1>
-      <div className="form-and-preview">
-        <div className="form-container">
-          <ProductForm onCreateProduct={createProduct} />
-        </div>
-        <div className="preview-container">
-          {product && <ProductPreview product={product} />}
+    <>
+      <Navbar />
+      <div className="create-product-container">
+        <h1>Crea un Nuovo Prodotto</h1>
+        <div className="form-and-preview">
+          <div className="form-container">
+            <ProductForm onCreateProduct={createProduct} />
+          </div>
+          <div className="preview-container">
+            {product && <ProductPreview product={product} />}
+          </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

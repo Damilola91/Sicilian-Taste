@@ -5,21 +5,23 @@ import { createReview } from "../../reducer/reviewsSlice";
 import { Star, StarHalf } from "lucide-react";
 import useSession from "../../hooks/useSession";
 import { selectReviewsByProduct } from "../../reducer/reviewsSlice";
+import { useNavigate } from "react-router-dom";
+import "./SuperDelicious.css"; // Assicurati che il CSS venga caricato correttamente
 
 const SuperDelicious = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.productSlice.products);
   const reviewsByProduct = useSelector(selectReviewsByProduct);
   const session = useSession();
+  const navigate = useNavigate();
 
   const [selectedRating, setSelectedRating] = useState({});
   const [randomProducts, setRandomProducts] = useState([]);
 
-  // Funzione per ottenere i prodotti casuali una sola volta
   useEffect(() => {
     const shuffled = [...products].sort(() => Math.random() - 0.5);
-    setRandomProducts(shuffled.slice(0, 6));
-  }, [products]); // Esso verrà eseguito solo una volta quando `products` cambia
+    setRandomProducts(shuffled.slice(0, 8));
+  }, [products]);
 
   const handleAddToCart = (product) => {
     const productToAdd = {
@@ -37,24 +39,20 @@ const SuperDelicious = () => {
       return;
     }
 
-    // Crea una nuova recensione con il rating
     const reviewData = {
       rating,
       user: session._id,
       product: productId,
     };
 
-    // Dispatch dell'azione createReview per inviare la recensione
     dispatch(createReview(reviewData));
 
-    // Imposta il rating selezionato (per colorare le stelle correttamente)
     setSelectedRating((prev) => ({
       ...prev,
       [productId]: rating,
     }));
   };
 
-  // Funzione per ottenere il rating medio di un prodotto
   const getProductRating = (productId) => {
     const reviews = reviewsByProduct[productId] || [];
     const averageRating =
@@ -65,29 +63,36 @@ const SuperDelicious = () => {
     return averageRating;
   };
 
+  const handleCardClick = (_id) => {
+    navigate(`/recipe/${_id}`);
+  };
+
   return (
     <section>
-      <h2 className="text-center mb-4">Super Delicious</h2>
-      <div className="row g-4">
+      <h2 className="super-delicious-title">Super Delicious</h2>
+      <div className="super-delicious-grid">
         {randomProducts.length > 0 ? (
           randomProducts.map((product) => {
             const productRating = getProductRating(product._id);
-            const userRating = selectedRating[product._id] || productRating; // Usa il rating appena inviato o quello esistente
+            const userRating = selectedRating[product._id] || productRating;
 
             return (
-              <div key={product._id} className="col-md-4">
-                <div className="card h-100">
+              <div key={product._id} className="super-delicious-card">
+                <div className="super-delicious-card-inner">
                   <img
                     src={product.img}
                     alt={product.name}
-                    className="card-img-top"
+                    className="super-delicious-image"
+                    onClick={() => handleCardClick(product._id)}
                   />
-                  <div className="card-body">
-                    <h5 className="card-title">{product.name}</h5>
-                    <p className="card-text">{product.description}</p>
-                    <div className="d-flex align-items-center">
+                  <div className="super-delicious-body">
+                    <h5 className="super-delicious-name">{product.name}</h5>
+                    <p className="super-delicious-description">
+                      {product.description}
+                    </p>
+                    <div className="super-delicious-rating">
                       <strong>Rating:</strong>
-                      <div className="ms-2">
+                      <div className="super-delicious-stars">
                         {[1, 2, 3, 4, 5].map((star) => (
                           <span
                             key={star}
@@ -105,14 +110,16 @@ const SuperDelicious = () => {
                         ))}
                       </div>
                     </div>
-                    <p className="card-text">
-                      <strong>Price:</strong> €
+                    <p className="super-delicious-price">
+                      €
                       {parseFloat(
                         product.price.$numberDecimal.toString()
                       ).toFixed(2)}
                     </p>
+                  </div>
+                  <div className="super-delicious-footer">
                     <button
-                      className="btn btn-primary"
+                      className="super-delicious-button"
                       onClick={() => handleAddToCart(product)}
                     >
                       Aggiungi al carrello

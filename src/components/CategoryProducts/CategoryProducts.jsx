@@ -9,6 +9,7 @@ import {
 } from "../../reducer/productSlice";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
+import "./CategoryProducts.css";
 
 const CategoryProducts = () => {
   const { category } = useParams();
@@ -34,8 +35,10 @@ const CategoryProducts = () => {
     <>
       <Navbar />
       <div className="category-products container my-5">
-        <h2 className="text-center mb-4">Products in "{category}"</h2>
-        {isLoading && <p>Loading...</p>}
+        <h2 className="text-center mb-4">
+          Prodotti nella categoria "{category}"
+        </h2>
+        {isLoading && <p>Caricamento in corso...</p>}
         {error && <p className="text-danger">{error}</p>}
         {!isLoading && !error && filteredProducts.length > 0 ? (
           <div className="row gy-3">
@@ -60,7 +63,7 @@ const CategoryProducts = () => {
             ))}
           </div>
         ) : (
-          <p>No products available in this category.</p>
+          <p>Nessun prodotto disponibile in questa categoria.</p>
         )}
       </div>
       <Footer />
