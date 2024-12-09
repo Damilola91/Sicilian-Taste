@@ -1,5 +1,4 @@
 import HomePage from "../components/Pages/HomePage/HomePage";
-
 import { Outlet } from "react-router-dom";
 
 export const isAuth = () => {

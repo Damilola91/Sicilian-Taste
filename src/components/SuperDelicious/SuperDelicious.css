@@ -47,15 +47,16 @@
 }
 
 .super-delicious-description {
-  color: #555;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 2; /* Limita a due righe */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis; /* Aggiunge i puntini di sospensione */
+    color: #555;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    overflow: hidden; /* Nasconde il contenuto che supera */
+    display: block;
+    height: 2.4em; /* Imposta l'altezza del contenitore in base al numero di righe */
+    line-height: 1.2em; /* Definisce l'altezza della riga */
+    text-overflow: ellipsis; /* Aggiunge i puntini di sospensione */
 }
+
 
 .super-delicious-rating {
   margin-bottom: 1rem;

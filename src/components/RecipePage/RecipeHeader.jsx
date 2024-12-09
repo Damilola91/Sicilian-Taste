@@ -4,7 +4,12 @@ const RecipeHeader = ({ name, img, description }) => {
       <h1 className="mb-3" style={{ fontFamily: "'Brush Script MT', cursive" }}>
         {name}
       </h1>
-      <img src={img} alt={name} className="img-fluid rounded mb-3" />
+      <img
+        src={img}
+        alt={name}
+        className="img-fluid rounded mb-3"
+        style={{ maxWidth: "100%", height: "auto", maxHeight: "400px" }} // Impostazioni inline per controllare la grandezza
+      />
       <p className="lead">{description}</p>
     </header>
   );

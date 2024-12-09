@@ -4,11 +4,13 @@ import {
   isProductLoading,
   errorProduct,
 } from "../../reducer/productSlice";
+import { useNavigate } from "react-router-dom";
 
 const SimilarRecipes = () => {
   const products = useSelector(allProducts);
   const isLoading = useSelector(isProductLoading);
   const error = useSelector(errorProduct);
+  const navigate = useNavigate();
 
   const getRandomProducts = (arr, num) => {
     const shuffled = [...arr].sort(() => 0.5 - Math.random());
@@ -17,6 +19,10 @@ const SimilarRecipes = () => {
 
   const randomRecipes =
     products && products.length > 0 ? getRandomProducts(products, 6) : [];
+
+  const handleCardClick = (_id) => {
+    navigate(`/recipe/${_id}`);
+  };
 
   return (
     <section className="mt-5">
@@ -32,6 +38,7 @@ const SimilarRecipes = () => {
                     src={recipe.img}
                     alt={recipe.name}
                     className="card-img-top"
+                    onClick={() => handleCardClick(recipe._id)}
                   />
                   <div className="card-body">
                     <h5 className="card-name text-center">{recipe.name}</h5>

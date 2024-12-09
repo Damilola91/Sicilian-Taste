@@ -10,13 +10,12 @@ import storage from "redux-persist/lib/storage"; // Usa localStorage o sessionSt
 import "./index.css";
 import App from "./App.jsx";
 
-// Configurazione persist per il cartReducer (puoi farlo anche per altri reducer come productSlice)
+// Configurazione persist per il cartReducer
 const cartPersistConfig = {
   key: "cart", // Chiave che userai per identificare lo stato persistente
   storage, // Salva lo stato in localStorage
 };
 
-// Combina i reducers come fai normalmente
 const reducer = combineReducers({
   productSlice: productReducer,
   cartSlice: persistReducer(cartPersistConfig, cartReducer), // Persisti solo cartSlice
