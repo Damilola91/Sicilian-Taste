@@ -1,11 +1,14 @@
-import "./Navbar.css";
+import { useState } from "react";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import Login from "../Login/Login";
-import { useState } from "react";
+import "./Navbar.css";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Stato di autenticazione
+  const navigate = useNavigate();
 
   const toggleDrawer = () => {
     setIsOpen(!isOpen);
@@ -13,6 +16,14 @@ const Navbar = () => {
 
   const closeDrawer = () => {
     setIsOpen(false);
+  };
+
+  const handleLogin = () => {
+    setIsAuthenticated(true); // Setta lo stato di autenticazione a true dopo il login
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false); // Setta lo stato di autenticazione a false dopo il logout
   };
 
   return (
@@ -61,7 +72,8 @@ const Navbar = () => {
             <div className="nav-icons d-flex align-items-center">
               <span className="search-icon">&#128269;</span>
               <button onClick={toggleDrawer} className="login-button ms-3">
-                Login
+                {isAuthenticated ? "Logout" : "Login"}{" "}
+                {/* Cambia il testo in base allo stato di autenticazione */}
               </button>
             </div>
           </div>
@@ -82,7 +94,12 @@ const Navbar = () => {
         size={350}
       >
         <div className="drawer-content">
-          <Login closeDrawer={closeDrawer} />
+          <Login
+            closeDrawer={closeDrawer}
+            onLogin={handleLogin} // Passa la funzione per gestire il login
+            onLogout={handleLogout} // Passa la funzione per gestire il logout
+            isAuthenticated={isAuthenticated} // Passa lo stato di autenticazione
+          />
         </div>
       </Drawer>
     </>

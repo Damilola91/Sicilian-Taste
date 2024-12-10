@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./Login.css";
 
-const Login = () => {
+const Login = ({ closeDrawer, onLogin, onLogout, isAuthenticated }) => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("Authorization");
     if (token) {
-      setIsAuthenticated(true);
+      onLogin();
     }
-  }, []);
+  }, [onLogin]);
 
   const handleInput = (event) => {
     const { name, value } = event.target;
@@ -52,7 +51,7 @@ const Login = () => {
       const result = await response.json();
       if (response.ok) {
         localStorage.setItem("Authorization", JSON.stringify(result.token));
-        setIsAuthenticated(true);
+        onLogin();
 
         setTimeout(() => {
           Swal.fire({
@@ -60,8 +59,10 @@ const Login = () => {
             title: `Benvenuto su Sicilian Taste, ${result.user.name}!`,
             customClass: { popup: "swal-popup" },
             zIndex: 999999,
+          }).then(() => {
+            closeDrawer();
+            navigate("/");
           });
-          navigate("/");
         }, 200);
       } else {
         Swal.fire({
@@ -97,7 +98,7 @@ const Login = () => {
 
       if (response.ok) {
         localStorage.removeItem("Authorization");
-        setIsAuthenticated(false);
+        onLogout();
 
         Swal.fire({
           icon: "success",
@@ -173,9 +174,6 @@ const Login = () => {
           </form>
           <p className="or-login-with">Or login with</p>
           <div className="social-buttons">
-            <button className="facebook-button">
-              <i className="fab fa-facebook"></i> Facebook
-            </button>
             <button className="google-button" onClick={redirectToGoogle}>
               Google
             </button>

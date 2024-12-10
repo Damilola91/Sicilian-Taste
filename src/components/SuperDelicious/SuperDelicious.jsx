@@ -6,7 +6,7 @@ import { Star, StarHalf } from "lucide-react";
 import useSession from "../../hooks/useSession";
 import { selectReviewsByProduct } from "../../reducer/reviewsSlice";
 import { useNavigate } from "react-router-dom";
-import "./SuperDelicious.css"; // Assicurati che il CSS venga caricato correttamente
+import "./SuperDelicious.css";
 
 const SuperDelicious = () => {
   const dispatch = useDispatch();
@@ -115,6 +115,11 @@ const SuperDelicious = () => {
                       {parseFloat(
                         product.price.$numberDecimal.toString()
                       ).toFixed(2)}
+                    </p>
+
+                    <p className="super-delicious-stock">
+                      Disponibile:{" "}
+                      {product.availableInStock.$numberDecimal || 0}
                     </p>
                   </div>
                   <div className="super-delicious-footer">
