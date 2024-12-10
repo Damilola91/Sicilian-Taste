@@ -2,26 +2,40 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { addToCart } from "../../reducer/cartSlice";
 import { createReview } from "../../reducer/reviewsSlice";
-import { Star, StarHalf } from "lucide-react";
+import { Star } from "lucide-react";
 import useSession from "../../hooks/useSession";
 import { selectReviewsByProduct } from "../../reducer/reviewsSlice";
 import { useNavigate } from "react-router-dom";
+import ResponsivePagination from "react-responsive-pagination";
+import {
+  getPaginatedProducts,
+  paginatedProducts,
+  paginatedTotalPages,
+  currentPage,
+  isProductLoading,
+  errorProduct,
+} from "../../reducer/productSlice";
 import "./SuperDelicious.css";
 
 const SuperDelicious = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.productSlice.products);
-  const reviewsByProduct = useSelector(selectReviewsByProduct);
-  const session = useSession();
   const navigate = useNavigate();
+  const session = useSession();
+
+  // Selettori per la paginazione
+  const products = useSelector(paginatedProducts);
+  const totalPagesCount = useSelector(paginatedTotalPages);
+  const currentPageNumber = useSelector(currentPage);
+  const isLoading = useSelector(isProductLoading); // Usa il selettore per il caricamento
+  const error = useSelector(errorProduct);
+
+  const reviewsByProduct = useSelector(selectReviewsByProduct);
 
   const [selectedRating, setSelectedRating] = useState({});
-  const [randomProducts, setRandomProducts] = useState([]);
 
   useEffect(() => {
-    const shuffled = [...products].sort(() => Math.random() - 0.5);
-    setRandomProducts(shuffled.slice(0, 8));
-  }, [products]);
+    dispatch(getPaginatedProducts({ page: 1, pageSize: 8 }));
+  }, [dispatch]);
 
   const handleAddToCart = (product) => {
     const productToAdd = {
@@ -67,12 +81,20 @@ const SuperDelicious = () => {
     navigate(`/recipe/${_id}`);
   };
 
+  const handlePageChange = (pageNumber) => {
+    dispatch(getPaginatedProducts({ page: pageNumber, pageSize: 8 }));
+  };
+
   return (
-    <section>
+    <section className="super-delicious-container">
       <h2 className="super-delicious-title">Super Delicious</h2>
       <div className="super-delicious-grid">
-        {randomProducts.length > 0 ? (
-          randomProducts.map((product) => {
+        {isLoading ? (
+          <p>Caricamento...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : products.length > 0 ? (
+          products.map((product) => {
             const productRating = getProductRating(product._id);
             const userRating = selectedRating[product._id] || productRating;
 
@@ -90,39 +112,34 @@ const SuperDelicious = () => {
                     <p className="super-delicious-description">
                       {product.description}
                     </p>
-                    <div className="super-delicious-rating">
-                      <strong>Rating:</strong>
-                      <div className="super-delicious-stars">
-                        {[1, 2, 3, 4, 5].map((star) => (
-                          <span
-                            key={star}
-                            onClick={() => handleRating(product._id, star)}
-                            style={{ cursor: "pointer" }}
-                          >
-                            {userRating >= star ? (
-                              <Star color="gold" />
-                            ) : userRating >= star - 0.5 ? (
-                              <StarHalf color="gold" />
-                            ) : (
-                              <Star color="lightgray" />
-                            )}
-                          </span>
-                        ))}
-                      </div>
+                    <div className="super-delicious-price">
+                      <span>
+                        Price:
+                        {parseFloat(
+                          product.price.$numberDecimal.toString()
+                        ).toFixed(2)}
+                        €
+                      </span>
                     </div>
-                    <p className="super-delicious-price">
-                      €
-                      {parseFloat(
-                        product.price.$numberDecimal.toString()
-                      ).toFixed(2)}
+                    <div className="super-delicious-rating">
+                      {[...Array(5)].map((_, i) => (
+                        <span
+                          key={i}
+                          className={
+                            i < userRating
+                              ? "super-delicious-full-star selected" // Applica la classe "selected" alle stelle votate
+                              : "super-delicious-empty-star"
+                          }
+                          onClick={() => handleRating(product._id, i + 1)}
+                        >
+                          <Star />
+                        </span>
+                      ))}
+                    </div>
+                    <p className="super-delicious-stock">
+                      Available:{product.availableInStock.$numberDecimal}{" "}
                     </p>
 
-                    <p className="super-delicious-stock">
-                      Disponibile:{" "}
-                      {product.availableInStock.$numberDecimal || 0}
-                    </p>
-                  </div>
-                  <div className="super-delicious-footer">
                     <button
                       className="super-delicious-button"
                       onClick={() => handleAddToCart(product)}
@@ -135,9 +152,18 @@ const SuperDelicious = () => {
             );
           })
         ) : (
-          <p>Non ci sono prodotti disponibili.</p>
+          <p>Nessun prodotto trovato</p>
         )}
       </div>
+      {totalPagesCount > 1 && (
+        <div className="super-delicious-pagination">
+          <ResponsivePagination
+            current={currentPageNumber}
+            total={totalPagesCount}
+            onPageChange={handlePageChange}
+          />
+        </div>
+      )}
     </section>
   );
 };

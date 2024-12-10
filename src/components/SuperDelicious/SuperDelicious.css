@@ -9,6 +9,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1rem;
+    margin-top: 30px; /* Aggiunge un margine in alto per il grid */
   }
   
   .super-delicious-card {
@@ -48,7 +49,6 @@
     overflow: hidden; /* Nasconde il testo che esce dai limiti */
     text-overflow: ellipsis; /* Aggiunge i puntini di sospensione se il testo è troppo lungo */
   }
-  
   
   .super-delicious-description {
     color: #555;
@@ -118,7 +118,36 @@
     color: #888;
   }
   
-  /* Responsività */
+  /* Paginazione centrata */
+  .super-delicious-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Aggiungi margine in alto per la paginazione */
+  }
+  
+  .super-delicious-pagination button {
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    margin: 0 5px;
+  }
+  
+  .super-delicious-pagination button:hover {
+    background-color: #e5533e;
+  }
+  
+  .super-delicious-pagination .active {
+    background-color: #e5533e;
+    color: white;
+  }
+  
+
   @media (max-width: 768px) {
     .super-delicious-title {
       font-size: 1.75rem;
@@ -160,5 +189,33 @@
       margin-top: 0.5rem;
       font-size: 0.8rem;
     }
+  }
+  
+  .super-delicious-full-star,
+  .super-delicious-empty-star {
+    display: inline-block;
+    padding: 3px;
+    border: 2px solid #000; /* Imposta un bordo nero di base */
+    border-radius: 50%;
+    transition: border-color 0.3s ease;
+  }
+  
+  .super-delicious-full-star {
+    border-color: #ffd700; /* Bordo giallo per le stelle piene */
+    color: #ffd700; /* Colore giallo per la stella piena */
+  }
+  
+  .super-delicious-empty-star {
+    border-color: #000; /* Bordo nero per le stelle vuote */
+    color: transparent; /* Le stelle vuote non hanno colore di sfondo */
+  }
+  
+  .super-delicious-rating span:hover {
+    border-color: #ffd700; /* Bordo giallo al passaggio del mouse */
+  }
+  
+  .super-delicious-rating span.selected {
+    border-color: #ffd700; /* Bordo giallo per la stella selezionata */
+    color: #ffd700; /* Colore giallo per la stella selezionata */
   }
   

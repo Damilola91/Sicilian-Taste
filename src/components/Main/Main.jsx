@@ -1,6 +1,7 @@
 import PopularCategories from "../PopularCategories/PopularCategories";
 import SuperDelicious from "../SuperDelicious/SuperDelicious";
 import Newsletter from "../NewsLetter/NewsLetter";
+
 import "./Main.css";
 
 const Main = () => {
