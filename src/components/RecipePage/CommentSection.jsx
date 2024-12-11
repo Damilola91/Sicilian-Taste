@@ -16,13 +16,13 @@ const CommentsSection = ({ productId }) => {
   const reviewsLoading = useSelector(selectReviewsLoading);
   const reviewsError = useSelector(selectReviewsError);
 
-  const session = useSession(); // Ottieni la sessione dell'utente loggato
+  const session = useSession();
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
     if (productId) {
-      dispatch(fetchReviewsByProduct(productId)); // Carica le recensioni iniziali
+      dispatch(fetchReviewsByProduct(productId));
     }
   }, [productId, dispatch]);
 
@@ -42,12 +42,10 @@ const CommentsSection = ({ productId }) => {
         user: session._id,
       };
 
-      // Invia la recensione al backend
       dispatch(createReview(reviewData))
         .unwrap()
         .then((createdReview) => {
-          // Dopo la creazione, aggiorna le recensioni
-          dispatch(fetchReviewsByProduct(productId)); // Ricarica le recensioni per il prodotto
+          dispatch(fetchReviewsByProduct(productId));
         })
         .catch((error) => {
           console.error("Errore durante la creazione del commento:", error);
@@ -70,13 +68,10 @@ const CommentsSection = ({ productId }) => {
       {!reviewsLoading && reviews.length === 0 && (
         <p>No comments yet. Be the first to comment!</p>
       )}
-
-      {/* Lista dei commenti */}
       <ul className="list-unstyled">
         {reviews.map((review) => (
           <li key={review._id} className="mb-3">
             <strong>{review.user.name || "Anonymous"}</strong>{" "}
-            {/* Usa session.name */}
             <div className="rating">
               {Array.from({ length: 5 }, (_, index) => (
                 <Star
@@ -90,8 +85,6 @@ const CommentsSection = ({ productId }) => {
           </li>
         ))}
       </ul>
-
-      {/* Form per aggiungere commento */}
       <form onSubmit={handleCommentSubmit} className="mt-4">
         <div className="form-group">
           <textarea

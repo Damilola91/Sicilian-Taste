@@ -31,7 +31,6 @@ const RecipePage = () => {
   const getRandomProduct = (arr) =>
     arr.length > 0 ? arr[Math.floor(Math.random() * arr.length)] : null;
 
-  // Se _id è presente nei parametri dell'URL, lo usiamo per trovare il prodotto
   const product = _id
     ? products.find((product) => product._id === _id)
     : getRandomProduct(products);
@@ -58,9 +57,7 @@ const RecipePage = () => {
             />
             <SimilarRecipes />
             <hr style={{ borderTop: "3px solid orange" }} />
-            {/* Sezione Commenti */}
-            <CommentsSection productId={product._id} />{" "}
-            {/* Passiamo sempre _id del prodotto */}
+            <CommentsSection productId={product._id} />
           </>
         ) : (
           !isLoading && <p>No products available.</p>

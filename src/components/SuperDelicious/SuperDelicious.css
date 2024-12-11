@@ -9,7 +9,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1rem;
-    margin-top: 30px; /* Aggiunge un margine in alto per il grid */
+    margin-top: 30px;
   }
   
   .super-delicious-card {
@@ -45,9 +45,9 @@
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
     font-weight: bold;
-    white-space: nowrap; /* Impedisce che il testo vada a capo */
-    overflow: hidden; /* Nasconde il testo che esce dai limiti */
-    text-overflow: ellipsis; /* Aggiunge i puntini di sospensione se il testo è troppo lungo */
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .super-delicious-description {
@@ -118,12 +118,11 @@
     color: #888;
   }
   
-  /* Paginazione centrata */
   .super-delicious-pagination {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px; /* Aggiungi margine in alto per la paginazione */
+    margin-top: 20px;
   }
   
   .super-delicious-pagination button {
@@ -195,27 +194,27 @@
   .super-delicious-empty-star {
     display: inline-block;
     padding: 3px;
-    border: 2px solid #000; /* Imposta un bordo nero di base */
+    border: 2px solid #000; 
     border-radius: 50%;
     transition: border-color 0.3s ease;
   }
   
   .super-delicious-full-star {
-    border-color: #ffd700; /* Bordo giallo per le stelle piene */
-    color: #ffd700; /* Colore giallo per la stella piena */
+    border-color: #ffd700;
+    color: #ffd700;
   }
   
   .super-delicious-empty-star {
-    border-color: #000; /* Bordo nero per le stelle vuote */
-    color: transparent; /* Le stelle vuote non hanno colore di sfondo */
+    border-color: #000;
+    color: transparent;
   }
   
   .super-delicious-rating span:hover {
-    border-color: #ffd700; /* Bordo giallo al passaggio del mouse */
+    border-color: #ffd700;
   }
   
   .super-delicious-rating span.selected {
-    border-color: #ffd700; /* Bordo giallo per la stella selezionata */
-    color: #ffd700; /* Colore giallo per la stella selezionata */
+    border-color: #ffd700;
+    color: #ffd700;
   }
   

@@ -1,7 +1,6 @@
 const RecipeDetails = ({ ingredients, recipe, nutritionFacts }) => {
   return (
     <div className="row mt-5">
-      {/* Sezione Ingredients con col-lg-2 */}
       <div className="col-lg-2 mb-4 recipe-column">
         <h3>Ingredients</h3>
         <ul>
@@ -10,8 +9,6 @@ const RecipeDetails = ({ ingredients, recipe, nutritionFacts }) => {
           ))}
         </ul>
       </div>
-
-      {/* Sezione Instructions con col-lg-8 (sezione centrale) */}
       <div className="col-lg-8 mb-4">
         <h3 className="instructions-title">Instructions</h3>
         <ol>
@@ -20,8 +17,6 @@ const RecipeDetails = ({ ingredients, recipe, nutritionFacts }) => {
           ))}
         </ol>
       </div>
-
-      {/* Sezione Nutrition Facts con col-lg-2 */}
       <div className="col-lg-2 mb-4">
         <h3>Nutrition Facts</h3>
         <ul>

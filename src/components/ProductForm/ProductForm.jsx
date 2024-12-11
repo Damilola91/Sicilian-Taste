@@ -40,7 +40,7 @@ const ProductForm = ({ onCreateProduct }) => {
         sugar: formData.sugar || 0,
       },
     };
-    await onCreateProduct(productData, file); // Passa i dati al parent
+    await onCreateProduct(productData, file);
   };
 
   return (

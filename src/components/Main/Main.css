@@ -1,7 +1,7 @@
 
 body {
-    font-family: 'Poppins', sans-serif; /* Font moderno */
-    background-color: #f9f9f9; /* Colore di sfondo */
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
     color: #333;
   }
   
@@ -23,7 +23,7 @@ h2, h3 {
  }
   
   .popular-categories img:hover {
-    transform: scale(1.1); /* Zoom su hover */
+    transform: scale(1.1);
   }
   
   .popular-categories p {
@@ -31,10 +31,9 @@ h2, h3 {
     font-weight: 500;
     margin: 0;
   }
-  
-  /* Distanza tra le categorie */
+ 
   .popular-categories .text-center {
-    margin: 0 20px; /* Spaziatura orizzontale tra le categorie */
+    margin: 0 20px;
   }
   
   /* Cards for recipes */
@@ -43,7 +42,7 @@ h2, h3 {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animazioni */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
   .card:hover {
@@ -52,8 +51,8 @@ h2, h3 {
   }
   
   .card img {
-    height: 180px; /* Altezza immagine */
-    object-fit: cover; /* Ritaglio proporzionato */
+    height: 180px;
+    object-fit: cover;
   }
   
   .card-title {
@@ -67,7 +66,6 @@ h2, h3 {
     color: #666;
   }
   
-  /* Newsletter Section */
   .newsletter-section {
     background-color: #ffebec;
     border-radius: 10px;

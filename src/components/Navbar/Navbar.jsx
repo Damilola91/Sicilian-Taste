@@ -96,9 +96,9 @@ const Navbar = () => {
         <div className="drawer-content">
           <Login
             closeDrawer={closeDrawer}
-            onLogin={handleLogin} // Passa la funzione per gestire il login
-            onLogout={handleLogout} // Passa la funzione per gestire il logout
-            isAuthenticated={isAuthenticated} // Passa lo stato di autenticazione
+            onLogin={handleLogin}
+            onLogout={handleLogout}
+            isAuthenticated={isAuthenticated}
           />
         </div>
       </Drawer>

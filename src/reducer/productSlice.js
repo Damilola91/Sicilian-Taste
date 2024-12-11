@@ -9,10 +9,10 @@ const initialState = {
   error: "",
   paginatedProducts: [],
   paginatedTotalPages: 0,
-  categorySearchProducts: [], // Stato per la ricerca per categoria
-  categorySearchError: "", // Stato per errori nella ricerca per categoria
-  categoryTotalProducts: 0, // Aggiunto per il totale dei prodotti per categoria
-  categoryTotalPages: 0, // Aggiunto per il totale delle pagine per categoria
+  categorySearchProducts: [],
+  categorySearchError: "",
+  categoryTotalProducts: 0,
+  categoryTotalPages: 0,
 };
 
 export const getAllProducts = createAsyncThunk(
@@ -59,7 +59,6 @@ export const getPaginatedProducts = createAsyncThunk(
   }
 );
 
-// Thunk per ottenere i prodotti filtrati per categoria con la paginazione
 export const getProductsByCategory = createAsyncThunk(
   "products/GETproductsByCategory",
   async ({ category, page = 1, pageSize = 6 }, { rejectWithValue }) => {
@@ -126,8 +125,8 @@ const allProductSlice = createSlice({
       .addCase(getProductsByCategory.fulfilled, (state, action) => {
         state.isLoading = false;
         state.categorySearchProducts = action.payload.products || [];
-        state.categoryTotalProducts = action.payload.count || 0; // Imposta il numero totale di prodotti per categoria
-        state.categoryTotalPages = action.payload.totalPages || 0; // Imposta il numero totale di pagine per categoria
+        state.categoryTotalProducts = action.payload.count || 0;
+        state.categoryTotalPages = action.payload.totalPages || 0;
       })
       .addCase(getProductsByCategory.rejected, (state, action) => {
         state.isLoading = false;
@@ -153,8 +152,8 @@ export const categorySearchProducts = (state) =>
 export const categorySearchError = (state) =>
   state.productSlice.categorySearchError;
 export const categoryTotalProducts = (state) =>
-  state.productSlice.categoryTotalProducts; // Aggiunto per ottenere il numero totale di prodotti nella categoria
+  state.productSlice.categoryTotalProducts;
 export const categoryTotalPages = (state) =>
-  state.productSlice.categoryTotalPages; // Aggiunto per ottenere il numero totale di pagine nella categoria
+  state.productSlice.categoryTotalPages;
 
 export default allProductSlice.reducer;

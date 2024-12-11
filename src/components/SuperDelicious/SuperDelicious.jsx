@@ -22,11 +22,10 @@ const SuperDelicious = () => {
   const navigate = useNavigate();
   const session = useSession();
 
-  // Selettori per la paginazione
   const products = useSelector(paginatedProducts);
   const totalPagesCount = useSelector(paginatedTotalPages);
   const currentPageNumber = useSelector(currentPage);
-  const isLoading = useSelector(isProductLoading); // Usa il selettore per il caricamento
+  const isLoading = useSelector(isProductLoading);
   const error = useSelector(errorProduct);
 
   const reviewsByProduct = useSelector(selectReviewsByProduct);

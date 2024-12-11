@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getProductsByCategory, // Importa il thunk corretto
+  getProductsByCategory,
   categorySearchProducts,
   categorySearchError,
   isProductLoading,
-  categoryTotalPages, // Numero totale di pagine per categoria
-  categoryTotalProducts, // Numero totale di prodotti per categoria
+  categoryTotalPages,
+  categoryTotalProducts,
 } from "../../reducer/productSlice";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
@@ -19,39 +19,32 @@ const CategoryProducts = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const products = useSelector(categorySearchProducts); // Prodotti per categoria
-  const isLoading = useSelector(isProductLoading); // Stato di caricamento
-  const error = useSelector(categorySearchError); // Errore nella ricerca
-  const totalPages = useSelector(categoryTotalPages); // Numero totale di pagine per categoria
-  const totalProducts = useSelector(categoryTotalProducts); // Numero totale di prodotti per categoria
+  const products = useSelector(categorySearchProducts);
+  const isLoading = useSelector(isProductLoading);
+  const error = useSelector(categorySearchError);
+  const totalPages = useSelector(categoryTotalPages);
+  const totalProducts = useSelector(categoryTotalProducts);
 
-  // Stato locale per la pagina corrente
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Effettua la chiamata all'API quando il componente si carica o quando la pagina cambia
   useEffect(() => {
-    console.log("Fetching products for page:", currentPage); // Debugging
     dispatch(
       getProductsByCategory({
         category,
         page: currentPage,
-        pageSize: 6, // Numero di prodotti per pagina
+        pageSize: 6,
       })
     );
   }, [dispatch, category, currentPage]);
 
-  // Gestione del click su una card prodotto
   const handleCardClick = (_id) => {
     navigate(`/recipe/${_id}`);
   };
 
-  // Gestione del cambio pagina
   const handlePageChange = (page) => {
-    console.log("Page changed to:", page); // Debugging
     setCurrentPage(page);
   };
 
-  // Debugging: log dei dati nel Redux store
   useEffect(() => {
     console.log("Products:", products);
     console.log("Total Pages:", totalPages);
@@ -93,8 +86,6 @@ const CategoryProducts = () => {
         ) : (
           <p>Nessun prodotto disponibile in questa categoria.</p>
         )}
-
-        {/* Mostra la paginazione solo se ci sono più di una pagina */}
         {totalPages > 1 && totalProducts > 6 && (
           <ResponsivePagination
             current={currentPage}

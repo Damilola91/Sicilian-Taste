@@ -92,7 +92,6 @@
     margin-bottom: 1rem;
   }
   
-  /* Media Queries for Responsiveness */
   @media (max-width: 600px) {
     .signup-form-container {
       height: auto;
