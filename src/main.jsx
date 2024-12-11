@@ -5,20 +5,19 @@ import { Provider } from "react-redux";
 import productReducer from "./reducer/productSlice.js";
 import cartReducer from "./reducer/cartSlice.js";
 import reviewsReducer from "./reducer/reviewsSlice.js";
-import { persistStore, persistReducer } from "redux-persist"; // Importa da redux-persist
-import storage from "redux-persist/lib/storage"; // Usa localStorage o sessionStorage
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import "./index.css";
 import App from "./App.jsx";
 
-// Configurazione persist per il cartReducer
 const cartPersistConfig = {
-  key: "cart", // Chiave che userai per identificare lo stato persistente
-  storage, // Salva lo stato in localStorage
+  key: "cart",
+  storage,
 };
 
 const reducer = combineReducers({
   productSlice: productReducer,
-  cartSlice: persistReducer(cartPersistConfig, cartReducer), // Persisti solo cartSlice
+  cartSlice: persistReducer(cartPersistConfig, cartReducer),
   reviewsSlice: reviewsReducer,
 });
 
@@ -38,4 +37,4 @@ createRoot(document.getElementById("root")).render(
   </StrictMode>
 );
 
-export { store, persistor }; // Puoi esportarlo per usarlo nel PersistGate
+export { store, persistor };

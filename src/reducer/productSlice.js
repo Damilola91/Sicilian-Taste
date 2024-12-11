@@ -2,17 +2,19 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLoading: false,
-  products: [], // Prodotti generali (non paginati)
+  products: [],
   totalProducts: 0,
   totalPages: 0,
-  currentPage: 1, // Pagina corrente per la paginazione
+  currentPage: 1,
   error: "",
-  // Stato per la paginazione specifica di SuperDelicious
-  paginatedProducts: [], // Prodotti per la paginazione (solo per SuperDelicious)
+  paginatedProducts: [],
   paginatedTotalPages: 0,
+  categorySearchProducts: [], // Stato per la ricerca per categoria
+  categorySearchError: "", // Stato per errori nella ricerca per categoria
+  categoryTotalProducts: 0, // Aggiunto per il totale dei prodotti per categoria
+  categoryTotalPages: 0, // Aggiunto per il totale delle pagine per categoria
 };
 
-// Thunk per ottenere tutti i prodotti
 export const getAllProducts = createAsyncThunk(
   "products/GETproducts",
   async () => {
@@ -34,7 +36,6 @@ export const getAllProducts = createAsyncThunk(
   }
 );
 
-// Thunk per ottenere i prodotti paginati (solo per SuperDelicious)
 export const getPaginatedProducts = createAsyncThunk(
   "products/GETpaginatedProducts",
   async ({ page = 1, pageSize = 8 }, { rejectWithValue }) => {
@@ -54,6 +55,30 @@ export const getPaginatedProducts = createAsyncThunk(
     } catch (error) {
       console.error("Error fetching paginated products:", error.message);
       return rejectWithValue("Couldn't retrieve paginated products");
+    }
+  }
+);
+
+// Thunk per ottenere i prodotti filtrati per categoria con la paginazione
+export const getProductsByCategory = createAsyncThunk(
+  "products/GETproductsByCategory",
+  async ({ category, page = 1, pageSize = 6 }, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        `${
+          import.meta.env.VITE_SERVER_BASE_URL
+        }/products/search/${category}?page=${page}&pageSize=${pageSize}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch products by category");
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error fetching products by category:", error.message);
+      return rejectWithValue("Couldn't retrieve products by category");
     }
   }
 );
@@ -83,31 +108,53 @@ const allProductSlice = createSlice({
       })
       .addCase(getPaginatedProducts.fulfilled, (state, action) => {
         state.isLoading = false;
-        // Memorizza i prodotti per la paginazione separata per SuperDelicious
         state.paginatedProducts = action.payload.products || [];
         state.totalProducts = action.payload.count || 0;
         state.totalPages = action.payload.totalPages || 0;
         state.currentPage = action.meta.arg.page || 1;
-        // Memorizza anche il numero di pagine per la paginazione specifica di SuperDelicious
         state.paginatedTotalPages = action.payload.totalPages || 0;
       })
       .addCase(getPaginatedProducts.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload || "Couldn't retrieve paginated products";
+      })
+
+      .addCase(getProductsByCategory.pending, (state) => {
+        state.isLoading = true;
+        state.categorySearchError = "";
+      })
+      .addCase(getProductsByCategory.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.categorySearchProducts = action.payload.products || [];
+        state.categoryTotalProducts = action.payload.count || 0; // Imposta il numero totale di prodotti per categoria
+        state.categoryTotalPages = action.payload.totalPages || 0; // Imposta il numero totale di pagine per categoria
+      })
+      .addCase(getProductsByCategory.rejected, (state, action) => {
+        state.isLoading = false;
+        state.categorySearchError =
+          action.payload || "Couldn't retrieve products by category";
       });
   },
 });
 
-// Gli export che hai chiesto di mantenere invariati
 export const allProducts = (state) => state.productSlice.products;
 export const isProductLoading = (state) => state.productSlice.isLoading;
 export const errorProduct = (state) => state.productSlice.error;
 export const paginatedProducts = (state) =>
-  state.productSlice.paginatedProducts; // Solo per SuperDelicious
+  state.productSlice.paginatedProducts;
 export const totalProducts = (state) => state.productSlice.totalProducts;
 export const totalPages = (state) => state.productSlice.totalPages;
 export const currentPage = (state) => state.productSlice.currentPage;
 export const paginatedTotalPages = (state) =>
-  state.productSlice.paginatedTotalPages; // Solo per SuperDelicious
+  state.productSlice.paginatedTotalPages;
+
+export const categorySearchProducts = (state) =>
+  state.productSlice.categorySearchProducts;
+export const categorySearchError = (state) =>
+  state.productSlice.categorySearchError;
+export const categoryTotalProducts = (state) =>
+  state.productSlice.categoryTotalProducts; // Aggiunto per ottenere il numero totale di prodotti nella categoria
+export const categoryTotalPages = (state) =>
+  state.productSlice.categoryTotalPages; // Aggiunto per ottenere il numero totale di pagine nella categoria
 
 export default allProductSlice.reducer;
