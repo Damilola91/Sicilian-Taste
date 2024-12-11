@@ -127,7 +127,7 @@ const SuperDelicious = () => {
                           key={i}
                           className={
                             i < userRating
-                              ? "super-delicious-full-star selected" // Applica la classe "selected" alle stelle votate
+                              ? "super-delicious-full-star selected"
                               : "super-delicious-empty-star"
                           }
                           onClick={() => handleRating(product._id, i + 1)}
@@ -137,7 +137,7 @@ const SuperDelicious = () => {
                       ))}
                     </div>
                     <p className="super-delicious-stock">
-                      Available:{product.availableInStock.$numberDecimal}{" "}
+                      Available:{product.availableInStock.$numberDecimal}
                     </p>
 
                     <button

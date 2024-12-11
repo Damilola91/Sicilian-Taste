@@ -22,7 +22,6 @@
   transition: background-image 0.5s ease-in-out;
 }
 
-
 .carousel-content {
   position: absolute;
   bottom: 30px; /* Ridotto per adattarsi meglio */
@@ -42,7 +41,6 @@
   margin: 0;
 }
 
-
 .carousel-button {
   position: absolute;
   top: 50%;
@@ -51,9 +49,10 @@
   color: white;
   border: none;
   font-size: 1.5rem; /* Ridotto il font del bottone */
-  padding: 8px;
+  width: 40px; /* Aggiunto per rendere il bottone rotondo */
+  height: 40px; /* Aggiunto per rendere il bottone rotondo */
   cursor: pointer;
-  border-radius: 50%;
+  border-radius: 50%; /* Rende il bottone rotondo */
   z-index: 10;
   transition: background-color 0.3s ease;
 }
@@ -85,7 +84,8 @@
 
   .carousel-button {
       font-size: 1.3rem; /* Font del bottone più piccolo */
-      padding: 6px; /* Ridotto il padding */
+      width: 35px; /* Ridotto per schermi più piccoli */
+      height: 35px; /* Ridotto per schermi più piccoli */
   }
 }
 
@@ -104,6 +104,8 @@
 
   .carousel-button {
       font-size: 1.2rem; /* Font del bottone più piccolo */
-      padding: 5px; /* Ridotto il padding */
+      width: 30px; /* Ulteriore riduzione per dispositivi molto piccoli */
+      height: 30px; /* Ulteriore riduzione per dispositivi molto piccoli */
   }
 }
+

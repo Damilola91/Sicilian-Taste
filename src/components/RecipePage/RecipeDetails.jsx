@@ -1,7 +1,8 @@
 const RecipeDetails = ({ ingredients, recipe, nutritionFacts }) => {
   return (
     <div className="row mt-5">
-      <div className="col-lg-4 mb-4">
+      {/* Sezione Ingredients con col-lg-2 */}
+      <div className="col-lg-2 mb-4 recipe-column">
         <h3>Ingredients</h3>
         <ul>
           {ingredients.crust.map((item, _id) => (
@@ -10,31 +11,28 @@ const RecipeDetails = ({ ingredients, recipe, nutritionFacts }) => {
         </ul>
       </div>
 
-      <div className="col-lg-8">
-        <div className="row">
-          <div className="col-lg-8">
-            <h3>Instructions</h3>
-            <ol>
-              {recipe.map((step, _id) => (
-                <li key={_id}>{step}</li>
-              ))}
-            </ol>
-          </div>
+      {/* Sezione Instructions con col-lg-8 (sezione centrale) */}
+      <div className="col-lg-8 mb-4">
+        <h3 className="instructions-title">Instructions</h3>
+        <ol>
+          {recipe.map((step, _id) => (
+            <li key={_id}>{step}</li>
+          ))}
+        </ol>
+      </div>
 
-          <div className="col-lg-4">
-            <h3>Nutrition Facts</h3>
-            <ul>
-              <li>Calories: {nutritionFacts.calories}</li>
-              <li>Carbs: {nutritionFacts.carbs}</li>
-              <li>Fat: {nutritionFacts.fat}</li>
-              <li>Protein: {nutritionFacts.protein}</li>
-              <li>Sugar: {nutritionFacts.sugar}</li>
-            </ul>
-          </div>
-        </div>
+      {/* Sezione Nutrition Facts con col-lg-2 */}
+      <div className="col-lg-2 mb-4">
+        <h3>Nutrition Facts</h3>
+        <ul>
+          <li>Calories: {nutritionFacts.calories}</li>
+          <li>Carbs: {nutritionFacts.carbs}</li>
+          <li>Fat: {nutritionFacts.fat}</li>
+          <li>Protein: {nutritionFacts.protein}</li>
+          <li>Sugar: {nutritionFacts.sugar}</li>
+        </ul>
       </div>
     </div>
   );
 };
-
 export default RecipeDetails;

@@ -75,7 +75,7 @@ const CommentsSection = ({ productId }) => {
       <ul className="list-unstyled">
         {reviews.map((review) => (
           <li key={review._id} className="mb-3">
-            <strong>{session?.name || "Anonymous"}</strong>{" "}
+            <strong>{review.user.name || "Anonymous"}</strong>{" "}
             {/* Usa session.name */}
             <div className="rating">
               {Array.from({ length: 5 }, (_, index) => (

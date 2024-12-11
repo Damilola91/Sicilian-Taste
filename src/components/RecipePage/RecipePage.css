@@ -1,12 +1,10 @@
-/* Impostazioni per l'immagine */
 header img {
-  max-width: 100%; /* L'immagine occupa al massimo tutta la larghezza del contenitore */
-  height: auto; /* Mantieni la proporzione dell'immagine */
-  object-fit: cover; /* Rende l'immagine più elegante, tagliando se necessario per adattarsi al contenitore */
-  max-height: 400px; /* Limita l'altezza massima dell'immagine (modifica questo valore in base alle tue preferenze) */
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  max-height: 400px;
 }
 
-/* Altre regole CSS per l'aspetto del componente */
 h1, h2, h3 {
   font-family: 'Brush Script MT', cursive;
   color: #ff6347;
@@ -22,7 +20,6 @@ h1, h2, h3 {
   text-align: center;
 }
 
-/* Spaziatura */
 header {
   margin-bottom: 2rem;
 }
@@ -46,3 +43,32 @@ section {
 .row {
   margin-top: 1rem;
 }
+
+.recipe-column {
+  padding-right: 15px;
+}
+
+.instructions-title {
+  text-align: center;
+}
+
+.instructions-section {
+  margin-right: 20px;
+}
+
+
+@media (max-width: 992px) {
+  .instructions-section {
+    margin-right: 0;
+  }
+
+  
+  .instructions-title {
+    text-align: left; 
+    margin-left: 0; 
+  }
+}
+
+
+
+
