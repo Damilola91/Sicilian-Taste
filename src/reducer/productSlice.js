@@ -13,6 +13,10 @@ const initialState = {
   categorySearchError: "",
   categoryTotalProducts: 0,
   categoryTotalPages: 0,
+  updatedProduct: null,
+  deletedProduct: null,
+  updateError: "",
+  deleteError: "",
 };
 
 export const getAllProducts = createAsyncThunk(
@@ -82,6 +86,58 @@ export const getProductsByCategory = createAsyncThunk(
   }
 );
 
+export const updateProduct = createAsyncThunk(
+  "products/UPDATEproduct",
+  async ({ productId, updateData }, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/products/update/${productId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updateData),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to update product");
+      }
+
+      const data = await response.json();
+      return data.product;
+    } catch (error) {
+      console.error("Error updating product:", error.message);
+      return rejectWithValue("Couldn't update the product");
+    }
+  }
+);
+
+export const deleteProduct = createAsyncThunk(
+  "products/DELETEproduct",
+  async (productId, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/products/delete/${productId}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to delete product");
+      }
+
+      const data = await response.json();
+      return data.product;
+    } catch (error) {
+      console.error("Error deleting product:", error.message);
+      return rejectWithValue("Couldn't delete the product");
+    }
+  }
+);
+
 const allProductSlice = createSlice({
   name: "products",
   initialState,
@@ -100,7 +156,6 @@ const allProductSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload || "Couldn't retrieve products";
       })
-
       .addCase(getPaginatedProducts.pending, (state) => {
         state.isLoading = true;
         state.error = "";
@@ -117,7 +172,6 @@ const allProductSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload || "Couldn't retrieve paginated products";
       })
-
       .addCase(getProductsByCategory.pending, (state) => {
         state.isLoading = true;
         state.categorySearchError = "";
@@ -132,6 +186,30 @@ const allProductSlice = createSlice({
         state.isLoading = false;
         state.categorySearchError =
           action.payload || "Couldn't retrieve products by category";
+      })
+      .addCase(updateProduct.pending, (state) => {
+        state.isLoading = true;
+        state.updateError = "";
+      })
+      .addCase(updateProduct.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.updatedProduct = action.payload || null;
+      })
+      .addCase(updateProduct.rejected, (state, action) => {
+        state.isLoading = false;
+        state.updateError = action.payload || "Couldn't update the product";
+      })
+      .addCase(deleteProduct.pending, (state) => {
+        state.isLoading = true;
+        state.deleteError = "";
+      })
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.deletedProduct = action.payload || null;
+      })
+      .addCase(deleteProduct.rejected, (state, action) => {
+        state.isLoading = false;
+        state.deleteError = action.payload || "Couldn't delete the product";
       });
   },
 });
@@ -146,7 +224,6 @@ export const totalPages = (state) => state.productSlice.totalPages;
 export const currentPage = (state) => state.productSlice.currentPage;
 export const paginatedTotalPages = (state) =>
   state.productSlice.paginatedTotalPages;
-
 export const categorySearchProducts = (state) =>
   state.productSlice.categorySearchProducts;
 export const categorySearchError = (state) =>
@@ -155,5 +232,9 @@ export const categoryTotalProducts = (state) =>
   state.productSlice.categoryTotalProducts;
 export const categoryTotalPages = (state) =>
   state.productSlice.categoryTotalPages;
+export const updatedProduct = (state) => state.productSlice.updatedProduct;
+export const deletedProduct = (state) => state.productSlice.deletedProduct;
+export const updateError = (state) => state.productSlice.updateError;
+export const deleteError = (state) => state.productSlice.deleteError;
 
 export default allProductSlice.reducer;

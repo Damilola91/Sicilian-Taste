@@ -45,12 +45,7 @@ const CategoryProducts = () => {
     setCurrentPage(page);
   };
 
-  useEffect(() => {
-    console.log("Products:", products);
-    console.log("Total Pages:", totalPages);
-    console.log("Total Products:", totalProducts);
-    console.log("Error:", error);
-  }, [products, totalPages, totalProducts, error]);
+  useEffect(() => {}, [products, totalPages, totalProducts, error]);
 
   return (
     <>
