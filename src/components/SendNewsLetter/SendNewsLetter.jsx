@@ -36,6 +36,8 @@ const SendNewsletter = () => {
         setResponseMessage(
           `Newsletter sent successfully to ${data.result.sentTo} recipients.`
         );
+        setHtml(""), setText("");
+        setSubject("");
         setIsError(false);
       } else {
         setResponseMessage(`Error: ${data.message}`);
