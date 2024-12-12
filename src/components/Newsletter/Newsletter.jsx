@@ -21,7 +21,7 @@ const Newsletter = () => {
 
       const data = await response.json();
       setMessage(data.message);
-      setEmail(""); // Resetta il campo email
+      setEmail("");
     } catch (error) {
       console.error("Error subscribing to newsletter:", error);
       setMessage("An error occurred. Please try again.");

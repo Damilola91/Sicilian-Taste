@@ -11,6 +11,7 @@ import CategoryProducts from "./components/CategoryProducts/CategoryProducts";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import WrappedOrderForm from "./components/WrappedOrderForm/WrappedOrderForm";
 import CreateProduct from "./components/CreateProduct/CreateProduct";
+import ContactPage from "./components/Pages/ContactPage/ContactPage";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/categories/:category" element={<CategoryProducts />} />
         <Route path="/recipe" element={<RecipePage />} />
         <Route path="/recipe/:_id" element={<RecipePage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route element={<ProtectedRoutes />}>
           <Route path="/create" element={<CreateProduct />} />
           <Route path="/buy" element={<WrappedOrderForm />} />
