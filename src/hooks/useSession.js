@@ -15,6 +15,7 @@ const useSession = () => {
 
     try {
       const decodedSession = session ? jwtDecode(session) : null;
+      console.log(decodedSession);
 
       if (isTokenExpired(decodedSession?.exp) && !isRecipePage) {
         setSessionData(null);

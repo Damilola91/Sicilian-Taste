@@ -3,12 +3,10 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import Login from "../Login/Login";
 import "./Navbar.css";
-import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const navigate = useNavigate();
 
   const toggleDrawer = () => {
     setIsOpen(!isOpen);
