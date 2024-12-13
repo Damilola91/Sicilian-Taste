@@ -18,7 +18,6 @@
   color: #ff6347;
 }
 
-
 .navbar-nav {
   display: flex;
   justify-content: center;
@@ -39,15 +38,6 @@
   color: #ff6347;
 }
 
-
-.nav-icons {
-  font-size: 1.2rem;
-}
-
-.search-icon {
-  cursor: pointer;
-}
-
 .login-button {
   padding: 5px 15px;
   font-size: 1rem;
@@ -64,12 +54,11 @@
   background-color: #e5533f;
 }
 
-
 @media (max-width: 768px) {
   .nav-link {
     text-align: center;
-    font-size: 1.3rem; 
-    margin: 10px 0; 
+    font-size: 1.3rem;
+    margin: 10px 0;
   }
 
   .login-button {

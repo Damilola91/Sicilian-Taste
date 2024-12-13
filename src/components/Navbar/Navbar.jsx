@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
@@ -79,7 +79,6 @@ const Navbar = () => {
               )}
             </ul>
             <div className="nav-icons d-flex align-items-center">
-              <span className="search-icon">&#128269;</span>
               <button onClick={toggleDrawer} className="login-button ms-3">
                 {isAuthenticated ? "Logout" : "Login"}
               </button>
