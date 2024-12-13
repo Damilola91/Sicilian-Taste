@@ -1,39 +1,34 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import Login from "../Login/Login";
 import "./Navbar.css";
 import useSession from "../../hooks/useSession";
+import {
+  login,
+  logout,
+  selectIsAuthenticated,
+  selectRole,
+} from "../../reducer/authSlice";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  const role = useSelector(selectRole);
   const sessionData = useSession();
 
-  const toggleDrawer = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const closeDrawer = () => {
-    setIsOpen(false);
-  };
-
-  const handleLogin = () => {
-    setIsAuthenticated(true);
-  };
-
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-  };
+  const toggleDrawer = () => setIsOpen(!isOpen);
+  const closeDrawer = () => setIsOpen(false);
 
   useEffect(() => {
     if (sessionData && sessionData.token) {
-      setIsAuthenticated(true);
+      dispatch(login({ role: sessionData.role }));
     } else {
-      setIsAuthenticated(false);
+      dispatch(logout());
     }
-  }, [sessionData]);
+  }, [sessionData, dispatch]);
 
   return (
     <>
@@ -42,7 +37,6 @@ const Navbar = () => {
           <a className="navbar-brand logo" href="/">
             SicilianTaste
           </a>
-
           <button
             className="navbar-toggler"
             type="button"
@@ -54,7 +48,6 @@ const Navbar = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav mx-auto">
               <li className="nav-item">
@@ -77,7 +70,7 @@ const Navbar = () => {
                   Buy
                 </a>
               </li>
-              {sessionData?.role === "admin" && isAuthenticated && (
+              {role === "admin" && isAuthenticated && (
                 <li className="nav-item">
                   <a className="nav-link" href="/admin">
                     Admin
@@ -94,7 +87,6 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-
       <Drawer
         open={isOpen}
         onClose={toggleDrawer}
@@ -111,8 +103,8 @@ const Navbar = () => {
         <div className="drawer-content">
           <Login
             closeDrawer={closeDrawer}
-            onLogin={handleLogin}
-            onLogout={handleLogout}
+            onLogin={() => dispatch(login({ role: sessionData.role }))}
+            onLogout={() => dispatch(logout())}
             isAuthenticated={isAuthenticated}
           />
         </div>

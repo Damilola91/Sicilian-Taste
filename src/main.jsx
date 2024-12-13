@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import productReducer from "./reducer/productSlice.js";
 import cartReducer from "./reducer/cartSlice.js";
 import reviewsReducer from "./reducer/reviewsSlice.js";
+import authReducer from "./reducer/authSlice.js";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import App from "./App.jsx";
@@ -18,6 +19,7 @@ const reducer = combineReducers({
   productSlice: productReducer,
   cartSlice: persistReducer(cartPersistConfig, cartReducer),
   reviewsSlice: reviewsReducer,
+  authSlice: authReducer,
 });
 
 const store = configureStore({

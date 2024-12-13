@@ -1,19 +1,22 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import "./Login.css";
+import { login, logout } from "../../reducer/authSlice";
 
-const Login = ({ closeDrawer, onLogin, onLogout, isAuthenticated }) => {
+const Login = ({ closeDrawer, isAuthenticated }) => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("Authorization");
     if (token) {
-      onLogin();
+      dispatch(login({ role: JSON.parse(token)?.role }));
     }
-  }, [onLogin]);
+  }, [dispatch]);
 
   const handleInput = (event) => {
     const { name, value } = event.target;
@@ -49,9 +52,10 @@ const Login = ({ closeDrawer, onLogin, onLogout, isAuthenticated }) => {
       );
 
       const result = await response.json();
+
       if (response.ok) {
         localStorage.setItem("Authorization", JSON.stringify(result.token));
-        onLogin(); // Imposta l'utente come autenticato
+        dispatch(login({ role: result.user.role }));
 
         setTimeout(() => {
           Swal.fire({
@@ -98,7 +102,7 @@ const Login = ({ closeDrawer, onLogin, onLogout, isAuthenticated }) => {
 
       if (response.ok) {
         localStorage.removeItem("Authorization");
-        onLogout();
+        dispatch(logout());
 
         Swal.fire({
           icon: "success",
