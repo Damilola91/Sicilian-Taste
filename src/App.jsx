@@ -12,8 +12,6 @@ import SignUpForm from "./components/SignUpForm/SignUpForm";
 import WrappedOrderForm from "./components/WrappedOrderForm/WrappedOrderForm";
 import CreateProduct from "./components/CreateProduct/CreateProduct";
 import ContactPage from "./components/Pages/ContactPage/ContactPage";
-import SendNewsletter from "./components/SendNewsLetter/SendNewsLetter";
-import ProductList from "./components/ProductList/ProductList";
 import AdminPage from "./components/AdminPage/AdminPage";
 
 const App = () => {
@@ -28,8 +26,8 @@ const App = () => {
         <Route path="/recipe" element={<RecipePage />} />
         <Route path="/recipe/:_id" element={<RecipePage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/admin" element={<AdminPage />} />
         <Route element={<ProtectedRoutes />}>
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="/create" element={<CreateProduct />} />
           <Route path="/buy" element={<WrappedOrderForm />} />
         </Route>

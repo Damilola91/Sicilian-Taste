@@ -9,27 +9,29 @@ const useSession = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isRecipePage = location.pathname === "/recipe";
+
   useEffect(() => {
     const session = isAuth();
 
     try {
       const decodedSession = session ? jwtDecode(session) : null;
-      console.log("Decoded session:", decodedSession);
 
-      if (isTokenExpired(decodedSession.exp) && !isRecipePage) {
+      if (isTokenExpired(decodedSession?.exp) && !isRecipePage) {
         setSessionData(null);
         navigate("/");
       } else {
-        setSessionData({
+        const updatedSession = {
           token: session,
+          role: decodedSession?.role || null,
           ...decodedSession,
-        });
+        };
+        setSessionData(updatedSession);
       }
     } catch (error) {
       console.error("Errore nel decoding del token:", error);
       setSessionData(null);
     }
-  }, [navigate]);
+  }, [navigate, location.pathname]);
 
   return sessionData;
 };

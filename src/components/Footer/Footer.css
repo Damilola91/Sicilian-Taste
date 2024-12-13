@@ -35,7 +35,7 @@
   
   .footer-link:hover {
     color: #007bff;
-    text-decoration: underline;
+    text-decoration: none;
   }
   
   .footer-icons {

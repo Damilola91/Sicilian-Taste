@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Stato di autenticazione
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
 
   const toggleDrawer = () => {
@@ -19,11 +19,11 @@ const Navbar = () => {
   };
 
   const handleLogin = () => {
-    setIsAuthenticated(true); // Setta lo stato di autenticazione a true dopo il login
+    setIsAuthenticated(true);
   };
 
   const handleLogout = () => {
-    setIsAuthenticated(false); // Setta lo stato di autenticazione a false dopo il logout
+    setIsAuthenticated(false);
   };
 
   return (
@@ -68,12 +68,16 @@ const Navbar = () => {
                   Buy
                 </a>
               </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/admin">
+                  Admin
+                </a>
+              </li>
             </ul>
             <div className="nav-icons d-flex align-items-center">
               <span className="search-icon">&#128269;</span>
               <button onClick={toggleDrawer} className="login-button ms-3">
-                {isAuthenticated ? "Logout" : "Login"}{" "}
-                {/* Cambia il testo in base allo stato di autenticazione */}
+                {isAuthenticated ? "Logout" : "Login"}
               </button>
             </div>
           </div>
