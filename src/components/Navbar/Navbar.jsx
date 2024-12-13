@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import Login from "../Login/Login";
 import "./Navbar.css";
+import useSession from "../../hooks/useSession";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const sessionData = useSession();
 
   const toggleDrawer = () => {
     setIsOpen(!isOpen);
@@ -23,6 +26,14 @@ const Navbar = () => {
   const handleLogout = () => {
     setIsAuthenticated(false);
   };
+
+  useEffect(() => {
+    if (sessionData && sessionData.token) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, [sessionData]);
 
   return (
     <>
@@ -66,11 +77,13 @@ const Navbar = () => {
                   Buy
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/admin">
-                  Admin
-                </a>
-              </li>
+              {sessionData?.role === "admin" && isAuthenticated && (
+                <li className="nav-item">
+                  <a className="nav-link" href="/admin">
+                    Admin
+                  </a>
+                </li>
+              )}
             </ul>
             <div className="nav-icons d-flex align-items-center">
               <span className="search-icon">&#128269;</span>

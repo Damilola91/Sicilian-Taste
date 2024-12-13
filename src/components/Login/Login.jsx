@@ -51,7 +51,7 @@ const Login = ({ closeDrawer, onLogin, onLogout, isAuthenticated }) => {
       const result = await response.json();
       if (response.ok) {
         localStorage.setItem("Authorization", JSON.stringify(result.token));
-        onLogin();
+        onLogin(); // Imposta l'utente come autenticato
 
         setTimeout(() => {
           Swal.fire({
