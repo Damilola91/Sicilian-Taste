@@ -48,7 +48,7 @@ const CommentsSection = ({ productId }) => {
           dispatch(fetchReviewsByProduct(productId));
         })
         .catch((error) => {
-          console.error("Errore durante la creazione del commento:", error);
+          console.error(error);
         });
 
       setComment("");

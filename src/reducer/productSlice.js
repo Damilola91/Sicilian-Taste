@@ -17,6 +17,9 @@ const initialState = {
   deletedProduct: null,
   updateError: "",
   deleteError: "",
+  searchProductsByName: [],
+  searchProductsError: "",
+  searchProductsCount: 0,
 };
 
 export const getAllProducts = createAsyncThunk(
@@ -82,6 +85,27 @@ export const getProductsByCategory = createAsyncThunk(
     } catch (error) {
       console.error("Error fetching products by category:", error.message);
       return rejectWithValue("Couldn't retrieve products by category");
+    }
+  }
+);
+
+export const searchProductsByName = createAsyncThunk(
+  "products/SEARCHproductsByName",
+  async (name, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/products/title/${name}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to search products by name");
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error searching products by name:", error.message);
+      return rejectWithValue("Couldn't search products by name");
     }
   }
 );
@@ -187,6 +211,20 @@ const allProductSlice = createSlice({
         state.categorySearchError =
           action.payload || "Couldn't retrieve products by category";
       })
+      .addCase(searchProductsByName.pending, (state) => {
+        state.isLoading = true;
+        state.searchProductsError = "";
+      })
+      .addCase(searchProductsByName.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.searchProductsByName = action.payload.products || [];
+        state.searchProductsCount = action.payload.products.length || 0;
+      })
+      .addCase(searchProductsByName.rejected, (state, action) => {
+        state.isLoading = false;
+        state.searchProductsError =
+          action.payload || "Couldn't search products by name";
+      })
       .addCase(updateProduct.pending, (state) => {
         state.isLoading = true;
         state.updateError = "";
@@ -232,6 +270,12 @@ export const categoryTotalProducts = (state) =>
   state.productSlice.categoryTotalProducts;
 export const categoryTotalPages = (state) =>
   state.productSlice.categoryTotalPages;
+export const searchProductsByNameState = (state) =>
+  state.productSlice.searchProductsByName;
+export const searchProductsError = (state) =>
+  state.productSlice.searchProductsError;
+export const searchProductsCount = (state) =>
+  state.productSlice.searchProductsCount;
 export const updatedProduct = (state) => state.productSlice.updatedProduct;
 export const deletedProduct = (state) => state.productSlice.deletedProduct;
 export const updateError = (state) => state.productSlice.updateError;

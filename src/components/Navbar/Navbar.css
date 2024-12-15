@@ -54,6 +54,26 @@
   background-color: #e5533f;
 }
 
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ff6347;
+}
+
+.search-input {
+  padding: 5px 10px;
+  font-size: 1rem;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
 @media (max-width: 768px) {
   .nav-link {
     text-align: center;
@@ -67,5 +87,10 @@
 
   .navbar-nav {
     flex-direction: column;
+  }
+
+  .search-container {
+    margin-left: auto;
+    margin-right: 10px;
   }
 }

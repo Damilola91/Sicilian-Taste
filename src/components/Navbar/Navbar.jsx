@@ -11,6 +11,8 @@ import {
   selectIsAuthenticated,
   selectRole,
 } from "../../reducer/authSlice";
+import SearchInput from "../SearchInput/SearchInput";
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,6 +20,7 @@ const Navbar = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const role = useSelector(selectRole);
   const sessionData = useSession();
+  const location = useLocation();
 
   const toggleDrawer = () => setIsOpen(!isOpen);
   const closeDrawer = () => setIsOpen(false);
@@ -79,6 +82,7 @@ const Navbar = () => {
               )}
             </ul>
             <div className="nav-icons d-flex align-items-center">
+              {location.pathname === "/" && <SearchInput />}
               <button onClick={toggleDrawer} className="login-button ms-3">
                 {isAuthenticated ? "Logout" : "Login"}
               </button>

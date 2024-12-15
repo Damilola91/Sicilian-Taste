@@ -21,8 +21,6 @@ const OrderForm = ({ cartItems }) => {
   const session = useSession();
   const navigate = useNavigate();
 
-  console.log(session);
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderMessage, setOrderMessage] = useState("");
   const [isConfirmed, setIsConfirmed] = useState(false);
