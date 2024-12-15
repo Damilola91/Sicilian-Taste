@@ -1,48 +1,44 @@
 import { useState } from "react";
-import { Search } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { searchProductsByName } from "../../reducer/productSlice";
+import "./SearchInput.css";
 
 const SearchInput = () => {
   const dispatch = useDispatch();
-  const [isInputVisible, setIsInputVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-
-  const toggleSearchInput = () => setIsInputVisible(!isInputVisible);
 
   const handleSearchChange = (event) => setSearchQuery(event.target.value);
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    if (searchQuery.trim()) {
-      dispatch(searchProductsByName(searchQuery));
-    }
+    dispatch(searchProductsByName(searchQuery.trim() || ""));
+  };
+
+  const handleClearSearch = () => {
+    setSearchQuery("");
+    dispatch(searchProductsByName(""));
   };
 
   return (
-    <div className="search-container d-flex align-items-center">
-      <button
-        onClick={toggleSearchInput}
-        className="search-icon-button"
-        aria-label="Search"
-      >
-        <Search size={24} />
-      </button>
+    <div className="search-input-container">
+      <form onSubmit={handleSearchSubmit} className="search-form">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={handleSearchChange}
+          className="search-input"
+          placeholder="Search Product"
+        />
 
-      {isInputVisible && (
-        <form
-          onSubmit={handleSearchSubmit}
-          className="d-flex align-items-center"
+        <button
+          type="button"
+          onClick={handleClearSearch}
+          className="clear-button"
+          aria-label="Clear search"
         >
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={handleSearchChange}
-            className="search-input"
-            placeholder="Cerca prodotti..."
-          />
-        </form>
-      )}
+          &#x2715;
+        </button>
+      </form>
     </div>
   );
 };

@@ -1,0 +1,58 @@
+/* SearchInput.css */
+
+.search-input-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px; /* Puoi adattarlo secondo il tuo layout */
+    margin: 0 auto;
+    padding: 10px 0;
+    font-family: "Times New Roman", serif; /* Stile classico del font */
+  }
+  
+  .search-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+  }
+  
+  .search-input {
+    flex-grow: 1;
+    border: none;
+    border-bottom: 2px solid #000; /* Linea nera sottostante */
+    outline: none;
+    font-size: 1.2rem;
+    color: #000;
+    font-family: "Times New Roman", serif;
+  }
+  
+  .search-input::placeholder {
+    color: #000; /* Testo placeholder nero */
+    opacity: 1;
+  }
+  
+  .search-results-text {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .clear-button {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: #000;
+    cursor: pointer;
+  }
+  
+  .clear-button:hover {
+    color: #999;
+  }
+  
+  .underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid #000;
+  }
+  

@@ -92,6 +92,9 @@ export const getProductsByCategory = createAsyncThunk(
 export const searchProductsByName = createAsyncThunk(
   "products/SEARCHproductsByName",
   async (name, { rejectWithValue }) => {
+    if (name.trim() === "") {
+      return { products: [] }; // Ritorniamo un payload vuoto
+    }
     try {
       const response = await fetch(
         `${import.meta.env.VITE_SERVER_BASE_URL}/products/title/${name}`

@@ -1,27 +1,3 @@
-/*const ProductCard = ({ product }) => {
-  return (
-    <div className="card">
-      <img
-        src={product.img} // Assicurati di gestire l'immagine in modo corretto
-        alt={product.name}
-        className="card-img-top"
-      />
-      <div className="card-body">
-        <h5 className="card-title">{product.name}</h5>
-        <p className="card-text">{product.description}</p>
-        <p className="card-text">
-          <strong>€{product.price.$numberDecimal}</strong>
-        </p>
-        <a href={`/recipe/${product._id}`} className="btn btn-primary">
-          Dettagli
-        </a>
-      </div>
-    </div>
-  );
-};
-
-export default ProductCard;*/
-
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../reducer/cartSlice";
@@ -32,7 +8,7 @@ import {
 import { Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import useSession from "../../hooks/useSession";
-import "../SuperDelicious/SuperDelicious.css";
+import "./ProductCard.css";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
@@ -90,28 +66,30 @@ const ProductCard = ({ product }) => {
   const userRating = selectedRating[product._id] || productRating;
 
   return (
-    <div className="card">
-      <div className="card-inner">
+    <div className="product-card">
+      <div className="product-card-inner">
         <img
           src={product.img}
           alt={product.name}
-          className="card-img-top"
+          className="product-card-img"
           onClick={() => handleCardClick(product._id)}
         />
-        <div className="card-body">
-          <h5 className="card-title">{product.name}</h5>
-          <p className="card-text">{product.description}</p>
-          <div className="card-price">
+        <div className="product-card-body">
+          <h5 className="product-card-title">{product.name}</h5>
+          <p className="product-card-description">{product.description}</p>
+          <div className="product-card-price">
             <span>
               Price: €{parseFloat(product.price.$numberDecimal).toFixed(2)}
             </span>
           </div>
-          <div className="card-rating">
+          <div className="product-card-rating">
             {[...Array(5)].map((_, i) => (
               <span
                 key={i}
                 className={
-                  i < userRating ? "card-full-star selected" : "card-empty-star"
+                  i < userRating
+                    ? "product-card-full-star selected"
+                    : "product-card-empty-star"
                 }
                 onClick={() => handleRating(product._id, i + 1)}
               >
@@ -119,11 +97,11 @@ const ProductCard = ({ product }) => {
               </span>
             ))}
           </div>
-          <p className="card-stock">
+          <p className="product-card-stock">
             Available: {parseFloat(product.availableInStock.$numberDecimal)}
           </p>
           <button
-            className="btn btn-primary"
+            className="product-card-button"
             onClick={() => handleAddToCart(product)}
           >
             Aggiungi al carrello

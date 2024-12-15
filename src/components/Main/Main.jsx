@@ -16,19 +16,20 @@ const Main = () => {
 
   return (
     <main className="container my-5">
-      <div className="search-results">
-        {searchResults && searchResults.length > 0 ? (
-          <div className="row">
-            {searchResults.map((product) => (
-              <div className="col-md-4" key={product._id}>
-                <ProductCard product={product} />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p>{searchError}</p>
-        )}
-      </div>
+      {/* Sezione risultati della ricerca */}
+      {searchResults && searchResults.length > 0 ? (
+        <div className="search-results row">
+          {searchResults.map((product) => (
+            <div className="col-md-4" key={product._id}>
+              <ProductCard product={product} />
+            </div>
+          ))}
+        </div>
+      ) : (
+        searchResults.length === 0 && <p>{searchError}</p>
+      )}
+
+      {/* Altri contenuti del Main */}
       <PopularCategories />
       <SuperDelicious />
       <Newsletter />

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import Login from "../Login/Login";
+import { Search } from "lucide-react";
 import "./Navbar.css";
 import useSession from "../../hooks/useSession";
 import {
@@ -12,15 +13,14 @@ import {
   selectRole,
 } from "../../reducer/authSlice";
 import SearchInput from "../SearchInput/SearchInput";
-import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showSearchInput, setShowSearchInput] = useState(false);
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const role = useSelector(selectRole);
   const sessionData = useSession();
-  const location = useLocation();
 
   const toggleDrawer = () => setIsOpen(!isOpen);
   const closeDrawer = () => setIsOpen(false);
@@ -82,7 +82,13 @@ const Navbar = () => {
               )}
             </ul>
             <div className="nav-icons d-flex align-items-center">
-              {location.pathname === "/" && <SearchInput />}
+              <button
+                onClick={() => setShowSearchInput((prev) => !prev)}
+                className="search-icon-button"
+                aria-label="Search"
+              >
+                <Search size={24} />
+              </button>
               <button onClick={toggleDrawer} className="login-button ms-3">
                 {isAuthenticated ? "Logout" : "Login"}
               </button>
@@ -90,6 +96,8 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+      {/* SearchInput visibile sotto la navbar */}
+      {showSearchInput && <SearchInput />}
       <Drawer
         open={isOpen}
         onClose={toggleDrawer}

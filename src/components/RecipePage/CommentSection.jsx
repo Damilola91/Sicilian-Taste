@@ -5,16 +5,15 @@ import {
   fetchReviewsByProduct,
   selectReviewsByProduct,
   selectReviewsLoading,
-  selectReviewsError,
 } from "../../reducer/reviewsSlice";
 import { Star } from "lucide-react";
 import useSession from "../../hooks/useSession";
+import "./CommentSection.css";
 
 const CommentsSection = ({ productId }) => {
   const dispatch = useDispatch();
   const reviews = useSelector(selectReviewsByProduct);
   const reviewsLoading = useSelector(selectReviewsLoading);
-  const reviewsError = useSelector(selectReviewsError);
 
   const session = useSession();
   const [comment, setComment] = useState("");
@@ -64,7 +63,6 @@ const CommentsSection = ({ productId }) => {
     <div className="comments-section">
       <h2 className="mt-4 mb-3">Comments</h2>
       {reviewsLoading && <p>Loading comments...</p>}
-      {reviewsError && <p className="text-danger">{reviewsError}</p>}
       {!reviewsLoading && reviews.length === 0 && (
         <p>No comments yet. Be the first to comment!</p>
       )}
@@ -109,7 +107,7 @@ const CommentsSection = ({ productId }) => {
         </div>
         <button
           type="submit"
-          className="btn btn-orange mt-3"
+          className="btn btn-orange mt-3 custom-button"
           disabled={!session?._id || !comment || rating === 0}
         >
           Post Comment
