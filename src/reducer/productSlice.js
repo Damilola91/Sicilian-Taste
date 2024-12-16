@@ -93,7 +93,7 @@ export const searchProductsByName = createAsyncThunk(
   "products/SEARCHproductsByName",
   async (name, { rejectWithValue }) => {
     if (name.trim() === "") {
-      return { products: [] }; // Ritorniamo un payload vuoto
+      return { products: [] };
     }
     try {
       const response = await fetch(

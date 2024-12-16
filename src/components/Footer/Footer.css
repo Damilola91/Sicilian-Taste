@@ -1,64 +1,126 @@
-
 .footer {
-    background-color: #f8f9fa;
-    color: #343a40;
-    padding: 40px 20px;/
+  background-color: #f8f9fa;
+  color: #343a40;
+  padding: 40px 20px;
+}
+
+.footer-logo {
+  font-family: "Brush Script MT", cursive;
+  font-size: 2.5rem;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.footer-quote {
+  font-size: 0.9rem;
+  color: #6c757d;
+  line-height: 1.6;
+}
+
+.footer-heading {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #000;
+}
+
+.footer-link {
+  color: #343a40;
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.footer-link:hover {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.footer-icons {
+  margin-top: 10px;
+}
+
+.icon-link {
+  color: #343a40;
+  margin: 0 10px;
+  transition: color 0.3s;
+}
+
+.icon-link:hover {
+  color: #007bff;
+}
+
+hr {
+  border-top: 1px solid #dee2e6;
+  margin: 20px 0;
+}
+
+.footer-copyright {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .footer .row {
+    text-align: left; /* Allinea il contenuto a sinistra su schermi più piccoli */
   }
 
   .footer-logo {
-    font-family: "Brush Script MT", cursive;
-    font-size: 2.5rem;
-    color: #000;
-    margin-bottom: 20px;
+    font-size: 1.8rem; /* Riduce la dimensione del logo su schermi più piccoli */
+    text-align: left;
   }
-  
+
   .footer-quote {
-    font-size: 0.9rem;
-    color: #6c757d;
-    line-height: 1.6;
+    font-size: 0.85rem; /* Riduce la dimensione della citazione su schermi piccoli */
+    text-align: left;
   }
-  
+
   .footer-heading {
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #000;
+    font-size: 1rem;
   }
 
   .footer-link {
-    color: #343a40;
-    text-decoration: none;
-    font-size: 0.9rem;
-    display: block;
-    margin-bottom: 8px;
-  }
-  
-  .footer-link:hover {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .footer-icons {
-    margin-top: 10px;
-  }
-  
-  .icon-link {
-    color: #343a40;
-    margin: 0 10px;
-    transition: color 0.3s;
-  }
-  
-  .icon-link:hover {
-    color: #007bff;
-  }
-  
-  hr {
-    border-top: 1px solid #dee2e6;
-    margin: 20px 0;
+    font-size: 0.85rem;
   }
 
   .footer-copyright {
-    font-size: 0.9rem;
-    color: #6c757d;
+    font-size: 0.8rem;
+    text-align: left;
   }
-  
+
+  .footer-icons {
+    text-align: left;
+    margin-top: 15px;
+  }
+
+  .footer .row > .col-lg-2 {
+    margin-bottom: 10px;
+  }
+
+  .footer .row > .col-12 {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-logo {
+    font-size: 1.5rem; /* Riduce ulteriormente la dimensione del logo */
+  }
+
+  .footer-quote {
+    font-size: 0.8rem; /* Ulteriore riduzione della citazione */
+  }
+
+  .footer-icons {
+    margin-top: 10px;
+  }
+
+  .footer-link {
+    font-size: 0.75rem; /* Riduce ulteriormente la dimensione del testo dei link */
+  }
+
+  .footer .row > .col-lg-2 {
+    text-align: left;
+  }
+}

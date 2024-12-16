@@ -15,6 +15,7 @@ import {
   isProductLoading,
   errorProduct,
 } from "../../reducer/productSlice";
+import Swal from "sweetalert2";
 import "./SuperDelicious.css";
 
 const SuperDelicious = () => {
@@ -44,6 +45,13 @@ const SuperDelicious = () => {
       img: product.img,
     };
     dispatch(addToCart(productToAdd));
+
+    Swal.fire({
+      title: "Prodotto aggiunto!",
+      text: `${product.name} è stato aggiunto al carrello.`,
+      icon: "success",
+      confirmButtonText: "OK",
+    });
   };
 
   const handleRating = (productId, rating) => {

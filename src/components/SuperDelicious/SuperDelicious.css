@@ -61,6 +61,20 @@
   text-overflow: ellipsis;
 }
 
+.super-delicious-price,
+.super-delicious-rating {
+  display: flex;
+  justify-content: center; /* Centra orizzontalmente */
+  align-items: center; /* Allinea verticalmente */
+  margin-bottom: 1rem;
+}
+
+.super-delicious-price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
 .super-delicious-rating {
   margin-bottom: 1rem;
   display: flex;
@@ -85,14 +99,7 @@
 }
 
 .super-delicious-rating span.selected {
-  color: #ffd700; 
-}
-
-.super-delicious-price {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 1rem;
+  color: #ffd700;
 }
 
 .super-delicious-stock {
@@ -184,6 +191,8 @@
   .super-delicious-button {
     font-size: 1rem;
     width: auto;
+    display: block;
+    margin: 20px auto;
   }
 }
 
@@ -201,7 +210,10 @@
   }
 
   .super-delicious-button {
-    margin-top: 0.5rem;
     font-size: 0.8rem;
+    display: block;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    width: 100%; 
   }
 }
