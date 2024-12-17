@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import ProductCard from "../ProductCard/ProductCard";
 import PopularCategories from "../PopularCategories/PopularCategories";
 import SuperDelicious from "../SuperDelicious/SuperDelicious";
-import Newsletter from "../NewsLetter/NewsLetter";
+import Newsletter from "../Newsletter/Newsletter";
 
 import "./Main.css";
 
