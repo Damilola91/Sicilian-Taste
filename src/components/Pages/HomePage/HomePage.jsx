@@ -1,3 +1,4 @@
+import Disclaimer from "../../Disclaimer/Disclaimer";
 import Footer from "../../Footer/Footer";
 import Header from "../../Header/Header";
 import Main from "../../Main/Main";
@@ -9,6 +10,7 @@ const HomePage = () => {
       <Navbar />
       <Header />
       <Main />
+      <Disclaimer />
       <Footer />
     </>
   );

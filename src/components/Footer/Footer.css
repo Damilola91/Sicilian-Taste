@@ -63,16 +63,16 @@ hr {
 
 @media (max-width: 768px) {
   .footer .row {
-    text-align: left; /* Allinea il contenuto a sinistra su schermi più piccoli */
+    text-align: left;
   }
 
   .footer-logo {
-    font-size: 1.8rem; /* Riduce la dimensione del logo su schermi più piccoli */
+    font-size: 1.8rem;
     text-align: left;
   }
 
   .footer-quote {
-    font-size: 0.85rem; /* Riduce la dimensione della citazione su schermi piccoli */
+    font-size: 0.85rem;
     text-align: left;
   }
 

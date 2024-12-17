@@ -54,11 +54,6 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav mx-auto">
               <li className="nav-item">
-                <a className="nav-link" href="/create">
-                  Crea Prodotto
-                </a>
-              </li>
-              <li className="nav-item">
                 <a className="nav-link" href="/recipe">
                   Recipe Page
                 </a>
@@ -96,7 +91,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      {/* SearchInput visibile sotto la navbar */}
+
       {showSearchInput && <SearchInput />}
       <Drawer
         open={isOpen}

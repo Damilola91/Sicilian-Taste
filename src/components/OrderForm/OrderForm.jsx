@@ -13,6 +13,7 @@ import useSession from "../../hooks/useSession";
 import "./OrderForm.css";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
+import Disclaimer from "../Disclaimer/Disclaimer";
 
 const OrderForm = ({ cartItems }) => {
   const dispatch = useDispatch();
@@ -170,49 +171,51 @@ const OrderForm = ({ cartItems }) => {
 
             {!isConfirmed ? (
               <>
-                <h3>Inserisci il tuo indirizzo di spedizione</h3>
-                <form className="shippingForm">
-                  <input
-                    type="text"
-                    name="fullName"
-                    placeholder="Nome completo"
-                    value={shippingAddress.fullName}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <input
-                    type="text"
-                    name="street"
-                    placeholder="Via"
-                    value={shippingAddress.street}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <input
-                    type="text"
-                    name="city"
-                    placeholder="Città"
-                    value={shippingAddress.city}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <input
-                    type="text"
-                    name="postalCode"
-                    placeholder="CAP"
-                    value={shippingAddress.postalCode}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <input
-                    type="text"
-                    name="country"
-                    placeholder="Paese"
-                    value={shippingAddress.country}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </form>
+                <div className="my-2">
+                  <h3>Inserisci il tuo indirizzo di spedizione</h3>
+                  <form className="shippingForm">
+                    <input
+                      type="text"
+                      name="fullName"
+                      placeholder="Nome completo"
+                      value={shippingAddress.fullName}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    <input
+                      type="text"
+                      name="street"
+                      placeholder="Via"
+                      value={shippingAddress.street}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    <input
+                      type="text"
+                      name="city"
+                      placeholder="Città"
+                      value={shippingAddress.city}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    <input
+                      type="text"
+                      name="postalCode"
+                      placeholder="CAP"
+                      value={shippingAddress.postalCode}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    <input
+                      type="text"
+                      name="country"
+                      placeholder="Paese"
+                      value={shippingAddress.country}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </form>
+                </div>
                 <button onClick={handleConfirmOrder} className="button">
                   Conferma Ordine (€{cartTotal})
                 </button>
@@ -237,6 +240,7 @@ const OrderForm = ({ cartItems }) => {
 
         {orderMessage && <p className="statusMessage">{orderMessage}</p>}
       </div>
+      <Disclaimer />
       <Footer />
     </>
   );

@@ -4,14 +4,11 @@ import ProductPreview from "../../components/ProductPreview/ProductPreview";
 import { useNavigate } from "react-router-dom";
 import useSession from "../../hooks/useSession";
 import "./CreateProduct.css";
-import Navbar from "../Navbar/Navbar";
-import Footer from "../Footer/Footer";
 
 const CreateProduct = () => {
   const [product, setProduct] = useState(null);
   const navigate = useNavigate();
   const sessionData = useSession();
-
   const uploadFile = async (fileToUpload) => {
     const fileData = new FormData();
     fileData.append("file", fileToUpload);
@@ -60,7 +57,6 @@ const CreateProduct = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: sessionData.token,
           },
           body: JSON.stringify(postFormData),
         }
@@ -79,7 +75,6 @@ const CreateProduct = () => {
 
   return (
     <>
-      <Navbar />
       <div className="create-product-container">
         <h1>Crea un Nuovo Prodotto</h1>
         <div className="form-and-preview">
@@ -91,7 +86,6 @@ const CreateProduct = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

@@ -10,7 +10,6 @@ import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 import CategoryProducts from "./components/CategoryProducts/CategoryProducts";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import WrappedOrderForm from "./components/WrappedOrderForm/WrappedOrderForm";
-import CreateProduct from "./components/CreateProduct/CreateProduct";
 import ContactPage from "./components/Pages/ContactPage/ContactPage";
 import AdminPage from "./components/AdminPage/AdminPage";
 
@@ -28,7 +27,6 @@ const App = () => {
         <Route path="/contact" element={<ContactPage />} />
         <Route element={<ProtectedRoutes />}>
           <Route path="/admin" element={<AdminPage />} />
-          <Route path="/create" element={<CreateProduct />} />
           <Route path="/buy" element={<WrappedOrderForm />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />

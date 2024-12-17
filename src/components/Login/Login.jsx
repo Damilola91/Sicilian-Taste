@@ -164,9 +164,6 @@ const Login = ({ closeDrawer, isAuthenticated }) => {
                 onChange={handleInput}
                 required
               />
-              <a href="/forgot-password" className="forgot-password-link">
-                Forgot Password?
-              </a>
             </div>
             <button
               type="submit"

@@ -14,6 +14,7 @@ import RecipeDetails from "./RecipeDetails";
 import SimilarRecipes from "./SimilarRecipes";
 import CommentsSection from "./CommentSection";
 import "./RecipePage.css";
+import Disclaimer from "../Disclaimer/Disclaimer";
 
 const RecipePage = () => {
   const { _id } = useParams();
@@ -63,6 +64,7 @@ const RecipePage = () => {
           !isLoading && <p>No products available.</p>
         )}
       </div>
+      <Disclaimer />
       <Footer />
     </>
   );

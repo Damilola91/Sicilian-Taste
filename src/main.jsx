@@ -9,6 +9,7 @@ import authReducer from "./reducer/authSlice.js";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import App from "./App.jsx";
+import "./App.css";
 
 const cartPersistConfig = {
   key: "cart",

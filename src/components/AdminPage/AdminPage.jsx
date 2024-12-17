@@ -1,3 +1,5 @@
+import CreateProduct from "../CreateProduct/CreateProduct";
+import Disclaimer from "../Disclaimer/Disclaimer";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import ProductList from "../ProductList/ProductList";
@@ -9,6 +11,8 @@ const AdminPage = () => {
       <Navbar />
       <ProductList />
       <SendNewsletter />
+      <CreateProduct />
+      <Disclaimer />
       <Footer />
     </>
   );

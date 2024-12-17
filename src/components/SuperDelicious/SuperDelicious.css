@@ -64,8 +64,8 @@
 .super-delicious-price,
 .super-delicious-rating {
   display: flex;
-  justify-content: center; /* Centra orizzontalmente */
-  align-items: center; /* Allinea verticalmente */
+  justify-content: center;
+  align-items: center;
   margin-bottom: 1rem;
 }
 
@@ -214,6 +214,6 @@
     display: block;
     margin-top: 30px;
     margin-bottom: 20px;
-    width: 100%; 
+    width: 50%; 
   }
 }

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import "./SuccessLoginGoogle.css";
 const SuccessLoginGoogle = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -13,13 +13,19 @@ const SuccessLoginGoogle = () => {
       localStorage.setItem("Authorization", JSON.stringify(token));
       setTimeout(() => {
         navigate("/");
-      }, 1000);
+      }, 2000);
     }
   }, [location, navigate]);
 
   return (
     <div>
-      <h1>Login Effettuato Con Successo</h1>
+      <div className="success-container">
+        <h1 className="success-title">Login Success!</h1>
+        <p className="success-message">
+          Benvenuto! Il tuo accesso con Google è stato completato con successo.
+          Verrai reindirizzato alla pagina principale tra pochi istanti.
+        </p>
+      </div>
     </div>
   );
 };

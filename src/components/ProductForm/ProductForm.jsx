@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./ProductForm.css";
 
 const ProductForm = ({ onCreateProduct }) => {
