@@ -8,7 +8,7 @@ const RecipeHeader = ({ name, img, description }) => {
         src={img}
         alt={name}
         className="img-fluid rounded mb-3"
-        style={{ maxWidth: "100%", height: "auto", maxHeight: "400px" }} // Impostazioni inline per controllare la grandezza
+        style={{ maxWidth: "100%", height: "auto", maxHeight: "400px" }}
       />
       <p className="lead">{description}</p>
     </header>

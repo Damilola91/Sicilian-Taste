@@ -105,11 +105,11 @@ hr {
 
 @media (max-width: 480px) {
   .footer-logo {
-    font-size: 1.5rem; /* Riduce ulteriormente la dimensione del logo */
+    font-size: 1.5rem;
   }
 
   .footer-quote {
-    font-size: 0.8rem; /* Ulteriore riduzione della citazione */
+    font-size: 0.8rem;
   }
 
   .footer-icons {
@@ -117,7 +117,7 @@ hr {
   }
 
   .footer-link {
-    font-size: 0.75rem; /* Riduce ulteriormente la dimensione del testo dei link */
+    font-size: 0.75rem
   }
 
   .footer .row > .col-lg-2 {
