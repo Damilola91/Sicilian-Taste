@@ -29,12 +29,13 @@
 }
 
 .product-card p {
-  font-size: 1em;
   color: #555;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
   overflow: hidden;
+  display: block;
+  height: 2.4em;
+  line-height: 1.2em;
   text-overflow: ellipsis;
 }
 
