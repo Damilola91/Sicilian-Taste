@@ -92,7 +92,6 @@ const OrderForm = ({ cartItems }) => {
       }
 
       const { clientSecret } = await response.json();
-      console.log("Client Secret ricevuto:", clientSecret);
 
       const result = await stripe.confirmCardPayment(clientSecret, {
         payment_method: { card: elements.getElement(CardElement) },
