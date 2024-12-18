@@ -2,9 +2,8 @@ import { useSelector } from "react-redux";
 import ProductCard from "../ProductCard/ProductCard";
 import PopularCategories from "../PopularCategories/PopularCategories";
 import SuperDelicious from "../SuperDelicious/SuperDelicious";
-
-import "./Main.css";
 import NewsLetter from "../NewsLetter/NewsLetter";
+import "./Main.css";
 
 const Main = () => {
   const searchResults = useSelector(
