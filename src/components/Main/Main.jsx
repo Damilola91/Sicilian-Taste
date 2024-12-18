@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import ProductCard from "../ProductCard/ProductCard";
 import PopularCategories from "../PopularCategories/PopularCategories";
 import SuperDelicious from "../SuperDelicious/SuperDelicious";
-import Newsletter from "../Newsletter/Newsletter";
+import NewsLetter from "../NewsLetter/Newsletter";
 
 import "./Main.css";
 
@@ -29,7 +29,7 @@ const Main = () => {
       )}
       <PopularCategories />
       <SuperDelicious />
-      <Newsletter />
+      <NewsLetter />
     </main>
   );
 };

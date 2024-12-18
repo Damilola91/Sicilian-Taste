@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Newsletter = () => {
+const NewsLetter = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
@@ -53,4 +53,4 @@ const Newsletter = () => {
   );
 };
 
-export default Newsletter;
+export default NewsLetter;
