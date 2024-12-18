@@ -84,7 +84,7 @@ const Navbar = () => {
               >
                 <Search size={24} />
               </button>
-              <button onClick={toggleDrawer} className="login-button ms-3">
+              <button onClick={toggleDrawer} className="nav-login-button ms-3">
                 {isAuthenticated ? "Logout" : "Login"}
               </button>
             </div>

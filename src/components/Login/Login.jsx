@@ -103,15 +103,17 @@ const Login = ({ closeDrawer, isAuthenticated }) => {
       if (response.ok) {
         localStorage.removeItem("Authorization");
         dispatch(logout());
-
-        Swal.fire({
-          icon: "success",
-          title: "Logout eseguito con successo",
-          customClass: { popup: "swal-popup" },
-          zIndex: 999999,
-        });
-
-        navigate("/");
+        setTimeout(() => {
+          Swal.fire({
+            icon: "success",
+            title: "Logout eseguito con successo",
+            customClass: { popup: "swal-popup" },
+            zIndex: 999999,
+          }).then(() => {
+            closeDrawer();
+            navigate("/");
+          });
+        }, 200);
       } else {
         Swal.fire({
           icon: "error",
