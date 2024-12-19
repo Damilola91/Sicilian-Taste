@@ -4,7 +4,7 @@ import PopularCategories from "../PopularCategories/PopularCategories";
 import SuperDelicious from "../SuperDelicious/SuperDelicious";
 
 import "./Main.css";
-import Newsletter from "../Pages/NewsLetter/Newsletter";
+import Newsletter from "../Pages/Newsletter/Newsletter";
 
 const Main = () => {
   const searchResults = useSelector(
