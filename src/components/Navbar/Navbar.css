@@ -67,16 +67,18 @@
     margin: 10px 0;
   }
 
-  .nav-login-button {
-    margin-top: 10px;
-  }
-
   .navbar-nav {
     flex-direction: column;
   }
 
-  .search-container {
-    margin-left: auto;
-    margin-right: 10px;
+  .nav-icons {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-login-button {
+    margin: 0;
   }
 }
