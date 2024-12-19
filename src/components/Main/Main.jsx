@@ -4,7 +4,7 @@ import PopularCategories from "../PopularCategories/PopularCategories";
 import SuperDelicious from "../SuperDelicious/SuperDelicious";
 
 import "./Main.css";
-import NewsLetter from "../Pages/Newsletter/Newsletter";
+import Newsletter from "../Newsletter/Newsletter";
 
 const Main = () => {
   const searchResults = useSelector(
@@ -29,7 +29,7 @@ const Main = () => {
       )}
       <PopularCategories />
       <SuperDelicious />
-      <NewsLetter />
+      <Newsletter />
     </main>
   );
 };
